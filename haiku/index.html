@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>haiku generator</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="application/javascript">
+      $(document).ready(function(){
+
+        var syll7 = [];
+        var syll5 = [];
+
+        function generate(){
+          if(! $('#c1').prop('checked') ){
+            $('#one').text(syll5[Math.floor(Math.random()*syll5.length)]);
+          }
+          if(! $('#c2').prop('checked') ){
+            $('#two').text(syll7[Math.floor(Math.random()*syll7.length)]);
+          }
+          if(! $('#c3').prop('checked') ){
+            $('#three').text(syll5[Math.floor(Math.random()*syll5.length)]);
+          }
+        }
+
+        $.get('syllable7.txt', function (data) {
+          syll7 = data.split("\n");
+        }).fail(function() {
+          alert( "could not load database" );
+        }).done(function(){
+          $.get('syllable5.txt', function (data) {
+            syll5 = data.split("\n");
+          }).fail(function() {
+            alert( "could not load database" );
+          }).done(function(){
+            $('#gen').click(function(){
+              generate();
+            })
+            $('#gen').prop('disabled', false);
+            $('#gen').text('generate');
+
+          });
+        });
+
+      });
+    </script>
+  </head>
+  <body>
+    <div style="width:500px;margin:auto;margin-top:100px">
+    <table style="text-align:center;margin:auto">
+      <tr>
+        <td width="400px"><span id="one">to work this machine</span></td>
+        <td><input type="checkbox" id="c1"/></td>
+      </tr>
+      <tr>
+        <td width="400px"><span id="two">simply press on the button</span></td>
+        <td><input type="checkbox" id="c2"/></td>
+      </tr>
+      <tr>
+        <td width="400px"><span id="three">and click checkboxes</span></td>
+        <td><input type="checkbox" id="c3"/></td>
+      </tr>
+    </table>
+    <br />
+    <button style="width:200px;margin:auto;display:block" id="gen" disabled>loading</button>
+    </div>
+
+  </body>
+</html> 
