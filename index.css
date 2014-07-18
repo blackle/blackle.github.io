@@ -1,89 +1,154 @@
-html { 
-    background: url(images/knob.gif) no-repeat center center fixed; 
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    height: 100%
+@import url(http://fonts.googleapis.com/css?family=Comfortaa:300);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu+Condensed);
+
+
+html {
+  height: 100%;
+  width: 100%;
+  background-color: #777;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;        
 }
 
-
-div#main {
-	width:600px;
-	margin-left: auto;
-	margin-right:auto;
-	padding: 20px;
-	margin-top: 40px;
-	background-color: #fafafa;
+body {
+  padding-top: 60px;
 }
 
-div#quote-main {
-	width: 450px;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 10px;
-	margin-bottom: 20px;
-
+* {
+  margin: 0;
+  padding: 0;
 }
 
-div#footer {
-	width: 100%;
+nav {
+  background-color: #e74141;
+  color: white;
+  padding: 20px 20px 30px;
+  height: 100px;
+  margin: 0px auto;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-table,tr,th,td {
-	padding: 0px;
-	border: 0px;
-	border-spacing:0;
-	border-collapse:collapse;
+nav:before {
+  content: '';
+  position: absolute;
+  display: block;
+  z-index: -1;
+  left: 0;
+  margin-top: -20px;
+  width: 50%;
+  height: 100px;
+  background-color: #e74141;
 }
 
-div#avatar {
-	width: 48px;
-	height: 48px;
-	padding: 2px;
-	margin: 10px;
-	background-color: #fafafa;
+nav a {
+  display: inline-block;
+  color: white;
+  margin-left: 10px;
 }
 
-div#quote {
-	width: 340px;
-	padding: 10px;
-	background-color: #fafafa;
-	text-align: justify;
+h1, h2, h3, h4, h5, h6 {
+  /*font-family: 'fireye_gf_3lite';*/
+  font-family: 'Comfortaa', serif;
+  line-height: 100%;
 }
 
-div.shadowed {
-	border-style: solid;
-	border-width: 0px 1px 2px 0px;
-	border-color: #747474;
-	border-bottom-color: #646464;
+p, span, a {
+  font-family: 'Ubuntu Condensed';
 }
 
-h1.title {
-	text-align: center;
-	padding: 0px;
-	margin-bottom: 0px;
+h1 {
+  letter-spacing: 20px;
+  margin-right: -20px;
 }
 
-p.subline {
-	text-align: center;
-	margin-top: 0px;
-	padding: 0px;
-	font-size: 11px;
+h2 {
+  letter-spacing: 0px;
+  margin-right: -0px;
 }
 
-p.description{
-	margin-top: 0px;
-	padding: 0px;
-	margin-left: 20px;
+article {
+  margin: 30px auto 0px; 
+  background-color: white;
+  position: relative;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0px 20px 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 50px;
+  color: black;
+  font-family: serif;
 }
 
-p.link{
-	margin-bottom: 0px;
-	padding: 0px;
+article:before {
+  content: '';
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  display: block;
+  width: 100%;
+  bottom: 100%;
+  left:0;
+  height: 1px;
+  background-color: transparent;
+  border-left: 0px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid white;
 }
 
-a:link {color:#2A2A2A;}      /* unvisited link */
-a:visited {color:#040404;}  /* visited link */
-a:hover {color:#404959;}  /* mouse over link */
-a:active {color:#192025;}  /* selected link */
+h1 {
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+p {
+font-size: 12px;
+font-family: sans-serif;
+}
+
+.clearfix {
+  clear: both;
+}
+
+/*@media all and (min-width: 800px) {*/
+  html {
+    /*background-image: url('images/bg.gif');*/
+  }
+/*}*/
+
+/*@media all and (max-width: 799px) {*/
+  html {
+    background-image: url('images/bg_small.gif');
+  }
+/*}*/
+
+@media all and (min-width: 600px) {
+  nav {
+    width: 70%;
+    max-width: 600px;
+    text-align: right;
+  }
+  article {
+    width: 70%;
+    max-width: 600px;
+  }
+}
+
+@media all and (max-width: 599px) {
+  nav {
+    width: 100%;
+    text-align: center;
+  }
+  article {
+    width: 80%;
+  }
+}
