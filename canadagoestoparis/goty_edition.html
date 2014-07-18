@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Canada goes to Paris</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.22" />
+</head>
+<body>
+	 <div style="font-size: 10px; color: #555555;">Disclaimer: This game is a non-sequitur. No socio-political commentary is intended </div>
+	<img id="title" src="images/paris.gif" style = "position: absolute; top: 140px; z-index: 1000" />
+
+	<img id="towerflash" src="images/towerflash.gif" style = "position: absolute; top: 100px; z-index: 100; visibility:hidden;" />
+	<img id="tower" src="images/tower.gif" style = "position: absolute; top: 100px; z-index: 10" />
+	<img id="flag" src="images/flag.gif" />
+	
+	<script>
+		var elem = (document.compatMode === "CSS1Compat") ? 
+			document.documentElement :
+			document.body;
+			
+		var divisor = elem.clientWidth / 2;
+		document.getElementById("title").style.left=(divisor-310)+"px";
+		document.getElementById("tower").style.left=(divisor-310)+"px";
+		document.getElementById("towerflash").style.left=(divisor-310)+"px";
+		var oldx = 0;
+		var x = 0;
+		var y = 0;
+		var on = 0;
+		var flagposx = 0;
+		var flagposy = 0;
+		var multiplier = 0;
+		var flag = document.getElementById("flag");
+		var tower = document.getElementById("towerflash");
+		var sound_enabled = 1;
+		var snd = new Array();
+		var currentsound = 0;
+		
+		document.addEventListener('mousemove', onMouseMove, false)
+		if (window.HTMLAudioElement) {
+			for(var i=0;i<10;i++){
+				snd[i] = new Audio('');
+				
+				if(snd[i].canPlayType('audio/ogg')) {
+					snd[i] = new Audio('sounds/meatpunch.ogg');
+				} else if(snd[i].canPlayType('audio/mp3')) {
+					snd[i] = new Audio('sounds/meatpunch.mp3');
+				}
+			}
+		} else {
+			alert('HTML5 Audio is not supported by your browser!');
+			sound_enabled = 0;
+		}
+		
+		function checkcross(){
+			if(oldx < divisor && flagposx > divisor ){
+				return 1;
+			}
+			if(oldx > divisor && flagposx < divisor ){
+				return 1;
+			}
+			return 0;
+		}
+		
+		function onMouseMove(e) {
+		    x = e.clientX;
+		    y = e.clientY;
+		}
+		var timer=setInterval(function(){flagupdate()},10);
+
+		var score = 0;
+		
+		function set_rotation(t){
+			flag.style.cssText="position: fixed; transform:rotate("+t+"deg); -ms-transform:rotate("+t+"deg); -moz-transform:rotate("+t+"deg); -webkit-transform:rotate("
+			+t+"deg); -o-transform:rotate("+t+"deg);z-index: 200;-webkit-filter: hue-rotate("+t*0.5*score+"deg); ";
+		}
+				
+		function flagupdate(){
+			oldx = flagposx;
+			flagposx = (flagposx*multiplier+x) / (multiplier+1);
+			flagposy = (flagposy*multiplier+y) / (multiplier+1);
+			
+			set_rotation(flagposx*.5);
+			flag.style.left = (flagposx-135)+"px";
+			flag.style.top = (flagposy-135)+"px";
+			if(checkcross() == 1){
+				if(on == 0){
+					tower.style.visibility = "visible";
+					window.setTimeout('changeback()',450);
+				}
+				if( sound_enabled == 1 ){
+					snd[currentsound].play();
+					score = score+1;
+					currentsound = (currentsound+1)%10;
+				}
+				on = 1;
+			}
+		}
+		function changeback(){
+			on = 0;
+			tower.style.visibility = "hidden";
+			//tower.src = "images/tower.gif";
+		}
+	</script>
+</body>
+
+</html>
