@@ -162,4 +162,16 @@ p {
 	header h1 {
 		font-size: 25px;
 	}
+
+	body {
+		padding-top: 20px;
+	}
+
+	article {
+		margin-top: 20px;
+	}
+
+	header, header:before {
+		height: 88px;
+	}
 }
