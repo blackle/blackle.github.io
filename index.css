@@ -83,9 +83,13 @@ article {
   font-size: 50px;
   color: black;
   font-family: serif;
+
+	border: 3px solid #E74141;
+	border-bottom-width: 6px;
+	border-top-width: 2px;
 }
 
-article:before {
+/*article:before {
   content: '';
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -99,7 +103,7 @@ article:before {
   border-left: 0px solid transparent;
   border-right: 20px solid transparent;
   border-bottom: 20px solid white;
-}
+}*/
 
 h1 {
   font-size: 30px;
@@ -151,4 +155,11 @@ font-family: sans-serif;
   article {
     width: 80%;
   }
+}
+
+
+@media all and (max-width: 599px) {
+	header h1 {
+		font-size: 25px;
+	}
 }
