@@ -23,7 +23,7 @@ body {
   padding: 0;
 }
 
-nav {
+header {
   background-color: #e74141;
   color: white;
   padding: 20px 20px 30px;
@@ -33,7 +33,7 @@ nav {
   box-sizing: border-box;
 }
 
-nav:before {
+header:before {
   content: '';
   position: absolute;
   display: block;
@@ -45,7 +45,7 @@ nav:before {
   background-color: #e74141;
 }
 
-nav a {
+nav li {
   display: inline-block;
   color: white;
   margin-left: 10px;
@@ -131,8 +131,8 @@ font-family: sans-serif;
   }
 /*}*/
 
-@media all and (min-width: 600px) {
-  nav {
+@media all and (min-width: 800px) {
+  header {
     width: 70%;
     max-width: 600px;
     text-align: right;
@@ -143,8 +143,8 @@ font-family: sans-serif;
   }
 }
 
-@media all and (max-width: 599px) {
-  nav {
+@media all and (max-width: 799px) {
+  header {
     width: 100%;
     text-align: center;
   }
