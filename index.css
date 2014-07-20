@@ -77,7 +77,7 @@ article {
   position: relative;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 0px 20px 20px;
+  padding: 20px;
   text-align: center;
   font-weight: bold;
   font-size: 50px;
@@ -115,8 +115,8 @@ h2 {
 }
 
 p {
-font-size: 12px;
-font-family: sans-serif;
+	font-size: 16px;
+	font-weight: normal;
 }
 
 .clearfix {
