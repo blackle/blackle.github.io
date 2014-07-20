@@ -83,27 +83,11 @@ article {
   font-size: 50px;
   color: black;
   font-family: serif;
-
+/*
 	border: 3px solid #E74141;
 	border-bottom-width: 6px;
-	border-top-width: 2px;
+	border-top-width: 2px;*/
 }
-
-/*article:before {
-  content: '';
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  position: absolute;
-  display: block;
-  width: 100%;
-  bottom: 100%;
-  left:0;
-  height: 1px;
-  background-color: transparent;
-  border-left: 0px solid transparent;
-  border-right: 20px solid transparent;
-  border-bottom: 20px solid white;
-}*/
 
 h1 {
   font-size: 30px;
