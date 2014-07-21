@@ -51,6 +51,11 @@ nav li {
   margin-left: 10px;
 }
 
+nav a, nav a:hover {
+	color: white;
+	text-decoration: none;
+}
+
 h1, h2, h3, h4, h5, h6 {
   /*font-family: 'fireye_gf_3lite';*/
   font-family: 'Comfortaa', serif;
