@@ -16,6 +16,7 @@ html {
 
 body {
   padding-top: 60px;
+  padding-bottom: 20px;
 }
 
 * {
@@ -111,7 +112,6 @@ h2 {
 
 article p {
 	font-size: 16px;
-	text-indent: 30px;
 	font-weight: normal;
 	text-align: left;
 	margin-bottom: 16px;
@@ -119,9 +119,6 @@ article p {
 
 article p:last-of-type {
 	margin-bottom: 0;
-}
-article p:first-of-type {
-	text-indent: 0px;
 }
 
 
@@ -167,7 +164,7 @@ article p:first-of-type {
   article:nth-child(even) {
 	  padding-left: 220px;
   }
-  
+
   article:nth-child(odd) {
 	  padding-right: 220px;
   }
