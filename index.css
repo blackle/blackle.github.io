@@ -11,7 +11,7 @@ html {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-position: center center;
-  background-attachment: fixed;        
+  background-attachment: fixed;
 }
 
 body {
@@ -51,9 +51,14 @@ nav li {
   margin-left: 10px;
 }
 
-nav a, nav a:hover {
+nav a {
 	color: white;
 	text-decoration: none;
+}
+
+nav a:hover {
+	color: white;
+	text-decoration: underline;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -94,6 +99,7 @@ article {
 	border-top-width: 2px;*/
 }
 
+
 h1 {
   font-size: 30px;
 }
@@ -103,9 +109,29 @@ h2 {
   margin-bottom: 20px;
 }
 
-p {
+article p {
 	font-size: 16px;
+	text-indent: 30px;
 	font-weight: normal;
+	text-align: left;
+	margin-bottom: 16px;
+}
+
+article p:last-of-type {
+	margin-bottom: 0;
+}
+article p:first-of-type {
+	text-indent: 0px;
+}
+
+
+.article-image {
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-position: center center;
+  /*background-attachment: fixed;*/
 }
 
 .clearfix {
@@ -125,15 +151,41 @@ p {
 /*}*/
 
 @media all and (min-width: 800px) {
+
+	
   header {
     width: 70%;
     max-width: 800px;
     text-align: right;
   }
+
   article {
     width: 70%;
     max-width: 800px;
   }
+
+  article:nth-child(even) {
+	  padding-left: 220px;
+  }
+  
+  article:nth-child(odd) {
+	  padding-right: 220px;
+  }
+
+	.article-image {
+		position: absolute;
+		width: 200px;
+		top: 0;
+		bottom: 0;
+	}
+
+	article:nth-child(even) .article-image {
+		left: 0;
+	}
+	
+	article:nth-child(odd) .article-image {
+		right: 0;
+	}
 }
 
 @media all and (max-width: 799px) {
@@ -144,6 +196,14 @@ p {
   article {
     width: 80%;
   }
+
+	.article-image {
+		width: 100px;
+		height: 200px;
+    float: left; 
+    clear: left; 
+		margin: 0px 20px 20px 0px;
+	}
 }
 
 
