@@ -84,6 +84,7 @@ h2 {
 
 article {
   margin: 30px auto 0px; 
+	min-height: 250px;
   background-color: white;
   position: relative;
   -moz-box-sizing: border-box;
@@ -122,7 +123,7 @@ article p:last-of-type {
 }
 
 
-.article-image {
+article figure {
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -169,18 +170,18 @@ article p:last-of-type {
 	  padding-right: 220px;
   }
 
-	.article-image {
+	article figure {
 		position: absolute;
 		width: 200px;
 		top: 0;
 		bottom: 0;
 	}
 
-	article:nth-child(even) .article-image {
+	article:nth-child(even) figure {
 		left: 0;
 	}
 	
-	article:nth-child(odd) .article-image {
+	article:nth-child(odd) figure {
 		right: 0;
 	}
 }
@@ -194,7 +195,7 @@ article p:last-of-type {
     width: 80%;
   }
 
-	.article-image {
+	article figure {
 		width: 100px;
 		height: 200px;
     float: left; 
