@@ -90,5 +90,5 @@ process_posts("links");
 create_static("index.html", "");
 create_static("404.html", "<article><h2>404</h2></article>");
 
-
+`yuicompressor index.css -o $root/index.css`;
 `chmod 755 -R $root`;
