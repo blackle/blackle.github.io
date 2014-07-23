@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use File::Copy;
 
-open(BASE, "base.html");
+open(BASE, "_base.html");
 
 my $onpre = 0;
 
