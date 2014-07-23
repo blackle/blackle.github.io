@@ -82,10 +82,12 @@ sub process_posts { my ($dir) = @_;
   create_static("$dir/index.html", $index_full);
 }
 
+my @folders = map { chomp; $_ } `find * -maxdepth 0 ! -path . -type d  -print`;
 
-process_posts("portfolio");
-process_posts("projects");
-process_posts("links");
+foreach my $folder (@folders) {
+  print "processing $folder\n";
+  process_posts($folder);
+}
 
 create_static("index.html", "");
 create_static("404.html", "<article><h2>404</h2></article>");
