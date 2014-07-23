@@ -45,6 +45,7 @@ sub process_posts { my ($dir) = @_;
 
   my @index;
 
+  my $post_num = 0;
   while (my $file = readdir(DIR)) {
       next if $file =~ m/^\./;
       mkdir "$root/$dir/$file";
@@ -71,18 +72,24 @@ sub process_posts { my ($dir) = @_;
       $article = join '', @article_bits;
 
 
-      my $readmore_link = "";
-      # if(scalar @article_bits == 2) {
+      my $readmore_link = "<a class=\"read-more-link\" href=\"/$dir/$file/\">Permalink</a>";
+      if(scalar @article_bits == 2) {
         $readmore_link = "<a class=\"read-more-link\" href=\"/$dir/$file/\">Read More &rarr;</a>";
-      # }
+      }
 
-      $index_article = "<article class=\"index-article $cover_class\">\n$cover\n$index_article\n$readmore_link\n</article>\n";
+      $index_article = "<article id=\"$file\" class=\"index-article $cover_class\">\n$cover\n$index_article\n$readmore_link\n</article>\n";
       push @index, $index_article;
+
+      # my $go_back_url = "/$dir/#$file";
+      # if($post_num >= $page_len) {
+      #   my $back_post = int($post_num/$page_len)+1;
+      #   $go_back_url = "/$dir/page/$back_post/#$file";
+      # }
       
       my $main_article = "<article class=\"main-article\">\n$cover\n$article\n</article>\n";
 
       create_static("$dir/$file/index.html", $main_article);
-
+      $post_num++;
   }
 
   @index = sort {
@@ -90,7 +97,7 @@ sub process_posts { my ($dir) = @_;
     $a =~ m/datetime="(\d+)-(\d+)-(\d+)">/;
     my $at = scalar timegm(0,0,0,$3,$2-1,$1);
     $b =~ m/datetime="(\d+)-(\d+)-(\d+)">/;
-    my $bt = scalar timegm(0,0,0,$3,$2-1,$1);\
+    my $bt = scalar timegm(0,0,0,$3,$2-1,$1);
     $bt <=> $at;
   }@index;
 
