@@ -3,6 +3,7 @@
 use strict;
 use warnings;
 use File::Copy;
+use Time::Local;
 
 open(BASE, "_base.html");
 
@@ -83,6 +84,15 @@ sub process_posts { my ($dir) = @_;
       create_static("$dir/$file/index.html", $main_article);
 
   }
+
+  @index = sort {
+    #sort by dates
+    $a =~ m/datetime="(\d+)-(\d+)-(\d+)">/;
+    my $at = scalar timegm(0,0,0,$3,$2-1,$1);
+    $b =~ m/datetime="(\d+)-(\d+)-(\d+)">/;
+    my $bt = scalar timegm(0,0,0,$3,$2-1,$1);\
+    $bt <=> $at;
+  }@index;
 
   if(scalar @index <= $page_len) {
     my $index_full = join '', @index;

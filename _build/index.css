@@ -90,6 +90,11 @@ h2 {
   text-align: center;
 }
 
+article h1 {
+  letter-spacing: 10px;
+  text-align: center;
+}
+
 article, main nav {
   margin: 30px auto 0px; 
   position: relative;
@@ -193,17 +198,22 @@ html {
   background-image: url('images/bg_small.gif');
 }
 
+
+.logo {
+  float: right;
+}
+
 @media all and (min-width: 800px) {
 
 	
   header {
-    width: 70%;
+    width: 80%;
     max-width: 800px;
     text-align: right;
   }
 
   article, main nav {
-    width: 70%;
+    width: 80%;
     max-width: 800px;
   }
 
@@ -230,6 +240,7 @@ html {
 	article.index-article:nth-child(odd) figure {
 		right: 0;
 	}
+
 }
 
 @media all and (max-width: 799px) {
@@ -248,6 +259,10 @@ html {
     clear: left; 
 		margin: 0px 20px 20px 0px;
 	}
+
+  .logo {
+    width: 100px;
+  }
 }
 
 
