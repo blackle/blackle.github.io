@@ -27,6 +27,15 @@ while (<BASE>) {
 close(BASE);
 my $root = '..';
 
+sub create_static { my ($file, $contents) = @_;
+
+  open(FILE, ">$root/$file") or die $!;
+  print FILE $HTML_START;
+  print FILE $contents;
+  print FILE $HTML_END;
+  close(FILE);
+}
+
 sub process_posts { my ($dir) = @_;
   opendir(DIR, "./$dir") or die $!;
 
@@ -64,32 +73,15 @@ sub process_posts { my ($dir) = @_;
       
       my $main_article = "<article class=\"main-article\">\n$cover\n$article\n</article>\n";
 
-      open(ARTICLE_MAIN, ">$root/$dir/$file/index.html") or die $!;
-      print ARTICLE_MAIN $HTML_START;
-      print ARTICLE_MAIN $main_article;
-      print ARTICLE_MAIN $HTML_END;
-      close(ARTICLE_MAIN);
+      create_static("$dir/$file/index.html", $main_article);
 
   }
 
   my $index_full = join '', @index;
 
-  open(ARTICLE_INDEX, ">$root/$dir/index.html") or die $!;
-  print ARTICLE_INDEX $HTML_START;
-  print ARTICLE_INDEX $index_full;
-  print ARTICLE_INDEX $HTML_END;
-  close(ARTICLE_INDEX);
+  create_static("$dir/index.html", $index_full);
 }
 
-
-sub create_static { my ($file, $contents) = @_;
-
-  open(FILE, ">$root/$file") or die $!;
-  print FILE $HTML_START;
-  print FILE $contents;
-  print FILE $HTML_END;
-  close(FILE);
-}
 
 process_posts("portfolio");
 process_posts("projects");
