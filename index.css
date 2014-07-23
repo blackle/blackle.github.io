@@ -80,27 +80,22 @@ h1 {
 h2 {
   letter-spacing: 0px;
   margin-right: -0px;
+  text-align: center;
 }
 
 article {
   margin: 30px auto 0px; 
-	min-height: 250px;
   background-color: white;
   position: relative;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 20px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 50px;
   color: black;
-  font-family: serif;
-/*
-	border: 3px solid #E74141;
-	border-bottom-width: 6px;
-	border-top-width: 2px;*/
 }
 
+article.with-cover {
+	min-height: 250px;
+}
 
 h1 {
   font-size: 30px;
@@ -114,7 +109,7 @@ h2 {
 article p {
 	font-size: 16px;
 	font-weight: normal;
-	text-align: left;
+	text-align: justify;
 	margin-bottom: 16px;
 }
 
@@ -123,6 +118,19 @@ article p:last-of-type {
 }
 
 
+article a.read-more-link {
+	display: block;
+	text-align: right;
+	color: #555;
+	text-decoration: none;
+	margin-top: 10px;
+}
+
+article a.read-more-link:hover {
+	color: #777;
+	text-decoration: underline;
+}
+
 article figure {
   background-size: cover;
   -webkit-background-size: cover;
@@ -130,6 +138,16 @@ article figure {
   -o-background-size: cover;
   background-position: center center;
   /*background-attachment: fixed;*/
+}
+
+
+
+article.main-article figure {
+	width: 200px;
+	height: 200px;
+  float: right; 
+  clear: right; 
+	margin: 0px 0px 20px 20px;
 }
 
 .clearfix {
@@ -162,26 +180,26 @@ article figure {
     max-width: 800px;
   }
 
-  article:nth-child(even) {
+  article.with-cover:nth-child(even) {
 	  padding-left: 220px;
   }
 
-  article:nth-child(odd) {
+  article.with-cover:nth-child(odd) {
 	  padding-right: 220px;
   }
 
-	article figure {
+	article.index-article figure {
 		position: absolute;
 		width: 200px;
 		top: 0;
 		bottom: 0;
 	}
 
-	article:nth-child(even) figure {
+	article.index-article:nth-child(even) figure {
 		left: 0;
 	}
 	
-	article:nth-child(odd) figure {
+	article.index-article:nth-child(odd) figure {
 		right: 0;
 	}
 }
@@ -195,7 +213,7 @@ article figure {
     width: 80%;
   }
 
-	article figure {
+	article.index-article figure {
 		width: 100px;
 		height: 200px;
     float: left; 
