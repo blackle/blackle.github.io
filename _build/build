@@ -67,9 +67,9 @@ sub process_posts { my ($dir) = @_;
       $article = join '', @article_bits;
 
       my $readmore_link = "";
-      if(scalar @article_bits == 2) {
+      # if(scalar @article_bits == 2) {
         $readmore_link = "<a class=\"read-more-link\" href=\"/$dir/$file/\">Read More &rarr;</a>";
-      }
+      # }
 
       $index_article = "<article class=\"index-article $cover_class\">\n$cover\n$index_article\n$readmore_link\n</article>\n";
       push @index, $index_article;
