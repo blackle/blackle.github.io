@@ -14,6 +14,10 @@ html {
   background-attachment: fixed;
 }
 
+.clearfix {
+  clear: both;
+}
+
 body {
   padding-top: 60px;
   padding-bottom: 20px;
@@ -46,18 +50,18 @@ header:before {
   background-color: #e74141;
 }
 
-nav li {
+header nav li {
   display: inline-block;
   color: white;
   margin-left: 10px;
 }
 
-nav a {
+header nav a {
 	color: white;
 	text-decoration: none;
 }
 
-nav a:hover {
+header nav a:hover {
 	color: white;
 	text-decoration: underline;
 }
@@ -68,11 +72,11 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 100%;
 }
 
-p, span, a {
+p, span, a, time {
   font-family: 'Ubuntu Condensed';
 }
 
-h1 {
+header h1 {
   font-size: 30px;
   letter-spacing: 20px;
   margin-right: -20px;
@@ -86,14 +90,44 @@ h2 {
   text-align: center;
 }
 
-article {
+article, main nav {
   margin: 30px auto 0px; 
-  background-color: white;
   position: relative;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 20px;
   color: black;
+}
+
+main nav a {
+  text-align: center;
+  display: block;
+  background-color: white;
+  padding: 20px;
+  width: 40px;
+  color: black;
+  text-decoration: none;
+}
+
+main nav a:hover {
+  color: white;
+  background-color: #e74141;
+}
+
+main nav a.next {
+  float: right;
+}
+
+main nav a.back {
+  float: left;
+}
+
+main nav::after {
+  clear: both;
+}
+
+article {
+  background-color: white;
+  padding: 20px;
 }
 
 article.with-cover {
@@ -134,7 +168,14 @@ article figure {
   /*background-attachment: fixed;*/
 }
 
-
+article time {
+  position: absolute;
+  top: 8px;
+  /*right: 10px;*/
+  font-size: 14px;
+  color: #888;
+  display: inline;
+}
 
 article.main-article figure {
 	width: 200px;
@@ -148,17 +189,9 @@ article.main-article figure {
   clear: both;
 }
 
-/*@media all and (min-width: 800px) {*/
-  html {
-    /*background-image: url('images/bg.gif');*/
-  }
-/*}*/
-
-/*@media all and (max-width: 799px) {*/
-  html {
-    background-image: url('images/bg_small.gif');
-  }
-/*}*/
+html {
+  background-image: url('images/bg_small.gif');
+}
 
 @media all and (min-width: 800px) {
 
@@ -169,7 +202,7 @@ article.main-article figure {
     text-align: right;
   }
 
-  article {
+  article, main nav {
     width: 70%;
     max-width: 800px;
   }
@@ -204,7 +237,7 @@ article.main-article figure {
     width: 100%;
     text-align: center;
   }
-  article {
+  article, main nav {
     width: 80%;
   }
 
@@ -227,7 +260,7 @@ article.main-article figure {
 		padding-top: 20px;
 	}
 
-	article {
+	article, main nav {
 		margin-top: 20px;
 	}
 

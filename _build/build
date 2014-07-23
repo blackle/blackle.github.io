@@ -26,6 +26,7 @@ while (<BASE>) {
 
 close(BASE);
 my $root = '..';
+my $page_len = 8;
 
 sub create_static { my ($file, $contents) = @_;
 
@@ -54,6 +55,8 @@ sub process_posts { my ($dir) = @_;
       my $article = join '', @lines;
       close(ARTICLE);
 
+      $article =~ s/datetime="(.+)">/datetime="$1">$1/;
+
       my $cover = "";
       my $cover_class = "no-cover";
       if (-e "./$dir/$file/cover.jpg") {
@@ -65,6 +68,7 @@ sub process_posts { my ($dir) = @_;
       my @article_bits = split /\[\[MORE\]\]/, $article;
       my $index_article = $article_bits[0];
       $article = join '', @article_bits;
+
 
       my $readmore_link = "";
       # if(scalar @article_bits == 2) {
@@ -80,9 +84,41 @@ sub process_posts { my ($dir) = @_;
 
   }
 
-  my $index_full = join '', @index;
+  if(scalar @index <= $page_len) {
+    my $index_full = join '', @index;
+    create_static("$dir/index.html", $index_full);
+  } else {
+    mkdir "$root/$dir/page";
 
-  create_static("$dir/index.html", $index_full);
+    my @pagearray;
+    
+    while (my @page = splice @index, 0, $page_len) {
+      push @pagearray, (join '', @page);
+    }
+
+    create_static("$dir/index.html", $pagearray[0]."\n<nav>\n<a class=\"next\" href=\"/$dir/page/2/\">Next</a>\n<div class=\"clearfix\"></div>\n</nav>\n");
+
+    for(my $pagenum = 2; $pagenum < scalar @pagearray + 1; $pagenum++){
+      mkdir "$root/$dir/page/$pagenum";
+      my $prev = $pagenum - 1;
+      my $next = $pagenum + 1;
+      my $prev_button = "";
+      if($prev == 1) {
+        $prev_button = "<a class=\"back\" href=\"/$dir/\">Back</a>";
+      } else {
+        $prev_button = "<a class=\"back\" href=\"/$dir/page/$prev/\">Back</a>";
+      }
+      my $next_button = "";
+      if($next == scalar @pagearray) {
+        $next_button = "<a class=\"next\" href=\"/$dir/page/$next/\">Next</a>";
+      }
+      create_static("$dir/page/$pagenum/index.html", $pagearray[$pagenum-1]."\n<nav>\n$prev_button\n$next_button\n<div class=\"clearfix\"></div>\n</nav>\n");
+
+    }
+  }
+
+
+
 }
 
 sub wrap_static { my ($file) = @_;
