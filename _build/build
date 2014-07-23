@@ -46,6 +46,9 @@ sub process_posts { my ($dir) = @_;
   while (my $file = readdir(DIR)) {
       next if $file =~ m/^\./;
       mkdir "$root/$dir/$file";
+      print "\t- $file\n";
+
+
       open(ARTICLE, "./$dir/$file/article.html") or die $!;
       my @lines = <ARTICLE>;
       my $article = join '', @lines;
@@ -82,15 +85,29 @@ sub process_posts { my ($dir) = @_;
   create_static("$dir/index.html", $index_full);
 }
 
+sub wrap_static { my ($file) = @_;
+  open(FILE, "./$file") or die $!;
+  my @lines = <FILE>;
+  my $file_contents = join '', @lines;
+  close(FILE);
+
+  create_static($file, $file_contents);
+}
+
 my @folders = map { chomp; $_ } `find * -maxdepth 0 ! -path . -type d  -print`;
 
+print "FOLDERS\n";
 foreach my $folder (@folders) {
-  print "processing $folder\n";
+  print "- $folder\n";
   process_posts($folder);
 }
 
-create_static("index.html", "");
-create_static("404.html", "<article><h2>404</h2></article>");
+print "FILES\n";
+my @files = map { chomp; $_ } `find * -maxdepth 0 ! -path . -type f -name '[^_]*.html' -print`;
+foreach my $file (@files) {
+  print "- $file\n";
+  wrap_static("$file");
+}
 
 `yuicompressor index.css -o $root/index.css`;
 `chmod 755 -R $root`;
