@@ -133,6 +133,7 @@ main nav::after {
 article {
   background-color: white;
   padding: 20px;
+  border-top: 20px solid #e74141;
 }
 
 article.with-cover {
@@ -175,11 +176,11 @@ article figure {
 
 article time {
   position: absolute;
-  top: 8px;
-  /*right: 10px;*/
+  top: -20px;
+  left: 4px;
   font-size: 14px;
-  color: #888;
-  display: inline;
+  display: block;
+  color: white;
 }
 
 article.main-article figure {
