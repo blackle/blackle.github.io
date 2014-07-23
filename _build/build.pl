@@ -91,7 +91,9 @@ sub create_static { my ($file, $contents) = @_;
   close(FILE);
 }
 
+process_posts("portfolio");
 process_posts("projects");
+process_posts("links");
 
 create_static("index.html", "");
 create_static("404.html", "<article><h2>404</h2></article>");
