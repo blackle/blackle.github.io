@@ -54,7 +54,12 @@ sub process_posts { my ($dir) = @_;
       my $index_article = $article_bits[0];
       $article = join '', @article_bits;
 
-      $index_article = "<article class=\"index-article $cover_class\">\n$cover\n$index_article\n<a class=\"read-more-link\" href=\"/$dir/$file/\">Read More &rarr;</a>\n</article>\n";
+      my $readmore_link = "";
+      if(scalar @article_bits == 2) {
+        $readmore_link = "<a class=\"read-more-link\" href=\"/$dir/$file/\">Read More &rarr;</a>";
+      }
+
+      $index_article = "<article class=\"index-article $cover_class\">\n$cover\n$index_article\n$readmore_link\n</article>\n";
       push @index, $index_article;
       
       my $main_article = "<article class=\"main-article\">\n$cover\n$article\n</article>\n";
@@ -76,12 +81,20 @@ sub process_posts { my ($dir) = @_;
   close(ARTICLE_INDEX);
 }
 
+
+sub create_static { my ($file, $contents) = @_;
+
+  open(FILE, ">$root/$file") or die $!;
+  print FILE $HTML_START;
+  print FILE $contents;
+  print FILE $HTML_END;
+  close(FILE);
+}
+
 process_posts("projects");
 
-open(INDEX, ">$root/index.html") or die $!;
-print INDEX $HTML_START;
-# print INDEX "";
-print INDEX $HTML_END;
-close(INDEX);
+create_static("index.html", "");
+create_static("404.html", "<article><h2>404</h2></article>");
+
 
 `chmod 755 -R $root`;
