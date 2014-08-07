@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Drawception Forum Quilt Viewer</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="application/javascript">
+      $(document).ready(function(){
+
+        var mosaic = $('.mosaic');
+        var viewer = $('.viewer');
+        viewer.hide();
+
+        var artist_list = [
+         'Fiddlebits',
+         'Raylenna',
+         'starfast',
+         'krekka',
+         'starfast',
+         'PewDieFlygon',
+         'Swag Masta of Doncasta',
+         '',
+         'Mesmic',
+         'Sharleen',
+         'Digit',
+         'Fridge',
+         'Queen Elsa',
+         'Captain Question',
+         'Klear',
+         'Audino',
+         'Blackle',
+         'AlexFantastico',
+         'Sikroth',
+         'Ciriart',
+         'DekuScrub',
+         'fdgery',
+         'Klear',
+         'N00bsaur'
+        ];
+
+        for(var x = 0; x < 24; x++) {
+          var block = $('<div>', {
+            class: 'item',
+            style: 'background: url(\'./thumbs/'+x+'.jpg\')'
+          });
+          block.click(function(num){
+            return function(){
+              $(".item.left").css('background', 'url(\'./before/'+num+'.jpg\')');
+              $(".item.right").css('background', 'url(\'./after/'+num+'.jpg\')');
+              $(".artist").text(artist_list[num]);
+              viewer.fadeIn(350);
+            }
+          }(x));
+          mosaic.append(block);
+        }
+
+        $('.close').click(function(){
+          viewer.fadeOut(200);
+        });
+      });
+    </script>
+    <style>
+      body {
+        background: #ddd;
+        margin: 0;
+        padding: 50px 0 0;
+        text-align: center;
+      }
+
+      .mosaic {
+        background: #fff;
+        width: 750px;
+        height: 500px;
+        margin: 0 auto;
+        font-size: 0;
+      }
+
+      .mosaic .item {
+        display: inline-block;
+        width: 125px;
+        height: 125px;
+        font-size: 50px;
+        color: white;
+        background-color: black;
+        position: relative;
+        cursor: pointer;
+        z-index: 10;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      .viewer {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        position: fixed;
+        background: rgba(0,0,0,0.8);
+        overflow-y: auto;
+      }
+
+      .viewer .container {
+        width: 1020px;
+        margin: 4% auto 0;
+        text-align: center;
+      }
+
+      .viewer .container .close {
+        display: inline-block;
+        padding: 10px;
+        font-size: 18px;
+        background: white;
+        cursor: pointer;
+        float: right;
+      }
+
+      .viewer .container .item {
+        width: 500px;
+        height: 500px;
+        background: white;
+        border: 2px solid white;
+      }
+
+      .viewer .container .item.left {
+        float: left;
+      }
+
+      .viewer .container .item.right {
+        float: right;
+      }
+
+      .viewer .container p {
+        padding: 10px;
+        background: white;
+        font-size: 18px;
+      }
+
+      .clearfix {
+        clear: both;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Drawception Forum Quilt Viewer</h1>
+    <h4>click on an image for artist info and a before/after!</h4>
+    <div class="mosaic">
+    </div>
+    <div class="viewer">
+      <div class="container">
+        <div class="item left"></div>
+        <div class="item right"></div>
+        <div class="clearfix"></div>
+        <p>Artist: <span class="artist"></span></p>
+        <div class="clearfix"></div>
+        <div class="close">return &rarr;</div>
+      </div>
+    </div>
+
+  </body>
+</html> 
