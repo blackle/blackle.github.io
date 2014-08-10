@@ -1,5 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Comfortaa:300);
-@import url(http://fonts.googleapis.com/css?family=Ubuntu+Condensed);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
 
 
 html {
@@ -70,16 +70,18 @@ h1, h2, h3, h4, h5, h6 {
   /*font-family: 'fireye_gf_3lite';*/
   font-family: 'Comfortaa', serif;
   line-height: 100%;
+  margin-bottom: 15px;
 }
 
 p, span, a, time {
-  font-family: 'Ubuntu Condensed';
+  font-family: 'Open Sans';
 }
 
 header h1 {
   font-size: 30px;
   letter-spacing: 20px;
   margin-right: -20px;
+  margin-bottom: 0;
 }
 
 h2, h3 {
@@ -90,15 +92,16 @@ h2, h3 {
 
 h2 {
   letter-spacing: 5px;
-  font-size: 24px;
+  font-size: 28px;
 }
 
 h3 {
-  font-size: 18px;
-  letter-spacing: 0px;
+  font-size: 22px;
+  letter-spacing: 5px;
 }
 
 article h1 {
+  font-size: 32px;
   letter-spacing: 10px;
   text-align: center;
 }
@@ -145,7 +148,7 @@ article {
 }
 
 article.with-cover {
-  min-height: 200px;
+  min-height: 220px;
 }
 
 article p {
@@ -215,6 +218,7 @@ html {
 
 .logo {
   float: right;
+  margin-left: 25px;
 }
 
 @media all and (min-width: 800px) {
