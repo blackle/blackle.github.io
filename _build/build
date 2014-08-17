@@ -47,7 +47,7 @@ sub process_posts { my ($dir) = @_;
 
   my $post_num = 0;
   while (my $file = readdir(DIR)) {
-      next if $file =~ m/^\./;
+      next if $file =~ m/^[\._]/;
       mkdir "$root/$dir/$file";
       print "\t- $file\n";
 
