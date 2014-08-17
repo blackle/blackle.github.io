@@ -85,8 +85,7 @@ header h1 {
 }
 
 h2, h3 {
-  margin-top: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   margin-right: 0px;
   text-align: left;
 }
@@ -97,6 +96,7 @@ h2 {
 }
 
 h3 {
+  margin-top: 15px;
   font-size: 22px;
   letter-spacing: 5px;
 }
