@@ -85,9 +85,10 @@ header h1 {
 }
 
 h2, h3 {
-  margin-bottom: 15px;
+  margin-top: 5px;
+  margin-bottom: 20px;
   margin-right: 0px;
-  text-align: center;
+  text-align: left;
 }
 
 h2 {
