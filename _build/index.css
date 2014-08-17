@@ -153,10 +153,9 @@ article.with-cover {
 }
 
 article p {
-	font-size: 16px;
-	font-weight: normal;
-	text-align: justify;
-	margin-bottom: 16px;
+  text-align: justify;
+  margin-bottom: 20px;
+  line-height: 1.6;
 }
 
 article p:last-of-type {
