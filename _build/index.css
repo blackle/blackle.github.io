@@ -215,6 +215,18 @@ html {
   background-image: url('images/bg_small.jpg');
 }
 
+span.pre {
+  font-family: monospace;
+  display: inline-block;
+  padding: 0 4px;
+  color: #444;
+  border: 1px solid #DDD;
+  font-size: 14px;
+  margin: 0 4px;
+  vertical-align: top;
+  border-radius: 3px;
+}
+
 
 .logo {
   float: right;
