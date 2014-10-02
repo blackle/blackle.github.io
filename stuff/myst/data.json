@@ -1,0 +1,145 @@
+{
+  "init": "6",
+  "sounds": {
+    "wrong": {
+      "url": "snd/wrong.wav"
+    },
+    "right": {
+      "url": "snd/right.wav"
+    },
+    "ambient": {
+      "url": "snd/ambient.wav"
+    }
+  },
+  "images": {
+    "cursor": {
+      "url": "img/glove.gif"
+    }
+  },
+  "areas": {
+    "6": {
+      "image": "img/boxes/BOX_6.jpg",
+      "hotspots": [
+        {
+          "xangle": 0.19,
+          "zangle": 2.58,
+          "radius": 0.5,
+          "to": "7"
+        },
+        {
+          "xangle": 0.32,
+          "zangle": 5.7,
+          "radius": 0.5,
+          "to": "5"
+        }
+      ]
+    },
+    "7": {
+      "image": "img/boxes/BOX_7.jpg",
+      "hotspots": [
+        {
+          "xangle": 0.1,
+          "zangle": 5.7,
+          "radius": 0.5,
+          "to": "6"
+        }
+      ]
+    },
+    "5": {
+      "image": "img/boxes/BOX_5.jpg",
+      "hotspots": [
+        {
+          "xangle": -0.18,
+          "zangle": 2.66,
+          "radius": 0.5,
+          "to": "6"
+        },
+        {
+          "xangle": 0.30,
+          "zangle": 5.40,
+          "radius": 0.5,
+          "to": "4"
+        }
+      ]
+    },
+    "4": {
+      "image": "img/boxes/BOX_4.jpg",
+      "hotspots": [
+        {
+          "xangle": -0.19,
+          "zangle": 2.62,
+          "radius": 0.5,
+          "to": "5"
+        },
+        {
+          "xangle": 0.21,
+          "zangle": 5.02,
+          "radius": 0.5,
+          "to": "0"
+        }
+      ]
+    },
+    "0": {
+      "image": "img/boxes/BOX_0.jpg",
+      "hotspots": [
+        {
+          "xangle": -0.12,
+          "zangle": 1.88,
+          "radius": 0.5,
+          "to": "4"
+        },
+        {
+          "xangle": 0.05,
+          "zangle": 4.88,
+          "radius": 0.5,
+          "to": "2"
+        }
+      ]
+    },
+    "2": {
+      "image": "img/boxes/BOX_2.jpg",
+      "hotspots": [
+        {
+          "xangle": 0.16,
+          "zangle": 1.66,
+          "radius": 0.5,
+          "to": "0"
+        },
+        {
+          "xangle": 0.03,
+          "zangle": 4.85,
+          "radius": 0.5,
+          "to": "3"
+        }
+      ]
+    },
+    "3": {
+      "image": "img/boxes/BOX_3.jpg",
+      "hotspots": [
+        {
+          "xangle": 0.14,
+          "zangle": 1.59,
+          "radius": 0.5,
+          "to": "2"
+        },
+        {
+          "xangle": 0.097,
+          "zangle": 4.82,
+          "radius": 0.5,
+          "to": "1"
+        }
+      ]
+    },
+    "1": {
+      "image": "img/boxes/BOX_1.jpg",
+      "hotspots": [
+        {
+          "xangle": 0.14,
+          "zangle": 1.59,
+          "radius": 0.5,
+          "to": "3"
+        }
+      ]
+    }
+  }
+}

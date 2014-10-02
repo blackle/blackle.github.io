@@ -1,0 +1,302 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Skybox (Three.js)</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<style>
+		body {
+			font-family: Monospace;
+			font-weight: bold;
+			background-color: #000;
+			margin: 0px;
+			overflow: hidden;
+		}
+
+		#cursor {
+		  position: fixed;
+		  top: 50%;
+		  left: 50%;
+		  margin-top: 0px;
+		  margin-left: -5px;
+		  z-index: 10;
+		}
+
+		#cursor.transparent {
+		  opacity:0.4;
+		  filter:alpha(opacity=40); /* For IE8 and earlier */
+		}
+
+		#ThreeJS{
+			position: fixed;
+			left:0px;
+			top:0px;
+			z-index: 1;
+		}
+	</style>
+</head>
+<body>
+
+<script src="js/Three.js"></script>
+<script src="js/Detector.js"></script>
+<!-- <script src="js/THREEx.KeyboardState.js"></script> -->
+<script src="js/THREEx.FullScreen.js"></script>
+<script src="js/THREEx.WindowResize.js"></script>
+<script src="js/SeamlessLoop.js"></script>
+
+<!-- jQuery code to display an information button and box when clicked. -->
+<!-- <script src="js/jquery-1.9.1.js"></script> -->
+<!-- ------------------------------------------------------------ -->
+<img id="cursor" src="img/spinner.gif" />
+
+<div id="ThreeJS"></div>
+<script>
+/*
+	Three.js "tutorials by example"
+	Author: Lee Stemkoski
+	Date: July 2013 (three.js v59dev)
+*/
+
+// MAIN
+
+// standard global variables
+var container, scene, camera, renderer;
+
+
+var audioloop = new SeamlessLoop();
+var wrong_snd;
+var right_snd;
+
+function soundsLoaded() {
+	audioloop.start("sound1");
+};
+
+var cube;
+var zAngle = 0;
+var xAngle = 0;
+var transition = false;
+var ttime = 200;
+var GAME_DATA;
+currentpos = "";
+
+
+var httpRequest = new XMLHttpRequest();
+httpRequest.onreadystatechange = function() {
+  if (httpRequest.readyState === 4) {
+    if (httpRequest.status === 200) {
+      GAME_DATA = JSON.parse(httpRequest.responseText);
+      var cursor = document.getElementById( 'cursor' )
+      cursor.src = GAME_DATA.images.cursor.url;
+      cursor.className = "transparent";
+      audioloop.addUri(GAME_DATA.sounds.ambient.url, 48579, "sound1");
+			audioloop.callback(soundsLoaded);
+
+			wrong_snd = new Audio(GAME_DATA.sounds.wrong.url);
+			right_snd = new Audio(GAME_DATA.sounds.right.url);
+
+      currentpos = GAME_DATA.init;
+
+			init();
+			animate();
+	  }
+  }
+};
+httpRequest.open('GET', 'data_expand.json');
+httpRequest.send(); 
+
+function activateHotspot(){
+	var rethotspot;
+
+	GAME_DATA.areas[currentpos].hotspots.forEach(function(hotspot) {
+		var distance = Math.acos(Math.sin(xAngle) * Math.sin(hotspot.xangle) + 
+		Math.cos(xAngle) * Math.cos(hotspot.xangle) * Math.cos(zAngle - hotspot.zangle));
+		if(distance < hotspot.radius) {
+			rethotspot = hotspot;
+		}
+	});
+
+	return rethotspot;
+}
+
+
+function moveLookLocked(xDelta, yDelta) {
+    zAngle += xDelta*0.0015 * (1-Math.abs(xAngle)/(Math.PI));
+    if (zAngle < 0)
+        zAngle += Math.PI*2;
+    if (zAngle >= Math.PI*2)
+        zAngle -= Math.PI*2;
+    
+    var maxangle = Math.PI*0.4;
+    xAngle += yDelta*0.0012;
+    if (xAngle < -maxangle)
+        xAngle = -maxangle;
+    if (xAngle > maxangle)
+        xAngle = maxangle;
+}
+
+// FUNCTIONS 		
+function init() 
+{
+	// SCENE
+	scene = new THREE.Scene();
+	// CAMERA
+	var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
+	var VIEW_ANGLE = 80, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 20000;
+	camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
+	scene.add(camera);
+	camera.position.set(0,0,0);
+	camera.rotation.order = 'ZYX';
+	camera.rotation.x = -xAngle;
+	camera.rotation.y = -zAngle;
+	camera.rotation.z = 0;
+	// RENDERER
+	if ( Detector.webgl )
+		renderer = new THREE.WebGLRenderer( {antialias:true} );
+	else
+		renderer = new THREE.CanvasRenderer(); 
+	renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+	container = document.getElementById( 'ThreeJS' );
+	container.appendChild( renderer.domElement );
+	// EVENTS
+	THREEx.WindowResize(renderer, camera);
+	
+	function init_skybox(radius){
+		var skyGeometry = new THREE.CubeGeometry( 50, 50, 50 );	
+		
+		var F_FRONT = [new THREE.Vector2(1, 1), new THREE.Vector2(1, 1/2), new THREE.Vector2(2/3, 1/2), new THREE.Vector2(2/3, 1)];
+		var F_LEFT = [new THREE.Vector2(1/3-0.001, 1/2), new THREE.Vector2(1/3-0.001, 0), new THREE.Vector2(0, 0), new THREE.Vector2(0, 1/2)];
+		var F_BACK = [new THREE.Vector2(1/3, 1), new THREE.Vector2(1/3, 1/2), new THREE.Vector2(0, 1/2), new THREE.Vector2(0, 1)];
+		var F_RIGHT = [new THREE.Vector2(2/3, 1), new THREE.Vector2(2/3, 1/2), new THREE.Vector2(1/3, 1/2), new THREE.Vector2(1/3, 1)];
+		var F_TOP = [new THREE.Vector2(1, 1/2), new THREE.Vector2(1, 0), new THREE.Vector2(2/3, 0), new THREE.Vector2(2/3, 1/2)];
+		var F_BOTTOM = [new THREE.Vector2(2/3, 1/2), new THREE.Vector2(2/3, 0), new THREE.Vector2(1/3, 0), new THREE.Vector2(1/3, 1/2)];
+		
+		skyGeometry.faceVertexUvs[0] = [];
+		skyGeometry.faceVertexUvs[0][0] = [ F_RIGHT[0], F_RIGHT[1], F_RIGHT[3] ];
+		skyGeometry.faceVertexUvs[0][1] = [ F_RIGHT[1], F_RIGHT[2], F_RIGHT[3] ];
+	 	
+		skyGeometry.faceVertexUvs[0][2] = [ F_LEFT[0], F_LEFT[1], F_LEFT[3] ];
+		skyGeometry.faceVertexUvs[0][3] = [ F_LEFT[1], F_LEFT[2], F_LEFT[3] ];
+		 
+		skyGeometry.faceVertexUvs[0][4] = [ F_TOP[0], F_TOP[1], F_TOP[3] ];
+		skyGeometry.faceVertexUvs[0][5] = [ F_TOP[1], F_TOP[2], F_TOP[3] ];
+		 
+		skyGeometry.faceVertexUvs[0][6] = [ F_BOTTOM[0], F_BOTTOM[1], F_BOTTOM[3] ];
+		skyGeometry.faceVertexUvs[0][7] = [ F_BOTTOM[1], F_BOTTOM[2], F_BOTTOM[3] ];
+	 	
+		skyGeometry.faceVertexUvs[0][8] = [ F_BACK[0], F_BACK[1], F_BACK[3] ];
+		skyGeometry.faceVertexUvs[0][9] = [ F_BACK[1], F_BACK[2], F_BACK[3] ];
+	 	
+		skyGeometry.faceVertexUvs[0][10] = [ F_FRONT[0], F_FRONT[1], F_FRONT[3] ];
+		skyGeometry.faceVertexUvs[0][11] = [ F_FRONT[1], F_FRONT[2], F_FRONT[3] ];
+		
+		return skyGeometry;
+	}
+	
+	var currentimg = GAME_DATA.areas[currentpos].image;
+	var image = THREE.ImageUtils.loadTexture(currentimg);
+	
+	var material = new THREE.MeshBasicMaterial({
+		map: image,
+		transparent: true,
+		opacity: 1.0,
+		side: THREE.BackSide
+	});
+
+	material.magFilter = THREE.NearestFilter;
+	material.minFilter = THREE.NearestFilter;
+
+	var materialBack = new THREE.MeshBasicMaterial({
+		map: image,
+		side: THREE.BackSide
+	});
+
+	materialBack.magFilter = THREE.NearestFilter;
+	materialBack.minFilter = THREE.NearestFilter;
+
+	//var skyMaterial = new THREE.MeshFaceMaterial( [] );
+	var skyBox = new THREE.Mesh( init_skybox(50), material );
+	var skyBoxBack = new THREE.Mesh( init_skybox(100), materialBack );
+	scene.add( skyBox );
+	scene.add( skyBoxBack );
+
+	renderer.domElement.addEventListener("click", function(event) {
+		if(document.pointerLockElement){
+			if(!transition) {
+				var hotspot = activateHotspot();
+				if(hotspot) {
+					right_snd.play();
+					currentpos = hotspot.to;
+					var currentimg = GAME_DATA.areas[currentpos].image;
+					var newtex = THREE.ImageUtils.loadTexture( currentimg );
+
+					skyBoxBack.material.map = newtex
+					transition = {
+						time: Date.now()+ttime,
+						skybox1: skyBox,
+						skybox2: skyBoxBack, 
+						tex: newtex
+					};	
+				} else {
+					wrong_snd.play();
+				}
+				console.log(xAngle, zAngle);
+				// skyBox.material.opacity = 0.5;
+			}
+			// if(activateHotspot() != null) {
+			// 	transition_state = 1;
+			// 	var old_urls = current_urls;
+			// 	current_urls = game_area.getCurrentLocation().imageUrls;
+			// 	skyboxFader = setupSkyboxFader(old_urls, current_urls);
+			// 	skybox = game_area.getCurrentSkybox();
+			// } else {
+			// 	wrong_snd.play();
+			// }
+		} else {
+			THREEx.FullScreen.request();
+			renderer.domElement.requestPointerLock();
+		}
+	}, false);
+
+	renderer.domElement.addEventListener("mousemove", function(event) {
+		if(document.pointerLockElement){
+			if(!transition) {
+				moveLookLocked(event.movementX, event.movementY);
+				camera.rotation.x = -xAngle;
+				camera.rotation.y = -zAngle;
+			}
+		}
+	}, false);
+}
+
+function animate() 
+{
+  requestAnimationFrame( animate );
+	render();		
+	update();
+}
+
+function update()
+{
+
+	if(transition) {
+		opacity = 1-(Date.now() - transition.time)/ttime;
+		if(opacity < 0) {
+			transition.skybox1.material.opacity = 1.0;
+			transition.skybox1.material.map = transition.tex;
+			transition = false;
+		} else {
+			transition.skybox1.material.opacity = opacity;
+		}
+	}
+}
+
+function render() 
+{
+	renderer.render( scene, camera );
+}
+
+</script>
+
+</body>
+</html>
