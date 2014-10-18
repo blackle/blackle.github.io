@@ -73,7 +73,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 15px;
 }
 
-p, span, a, time {
+p, span, time, nav a {
   font: 16px/1.6 "helvetica neue",helvetica,arial,sans-serif;
 }
 
@@ -152,6 +152,10 @@ article.with-cover {
   min-height: 220px;
 }
 
+article.main-article {
+  min-height: 260px;
+}
+
 article p {
   text-align: justify;
   margin-bottom: 20px;
@@ -174,6 +178,27 @@ article a.read-more-link, article a.go-back-link {
   color: #555;
   text-decoration: none;
   margin-top: 10px;
+}
+
+article h2 a {
+  width: 100%;
+  background: #fff;
+  color: black;
+  padding: 5px;
+  /* text-decoration: none !important; */
+  text-decoration: none;
+  display: inline-block;
+}
+
+article h2 a:visited {
+  color: #666;
+}
+
+
+article h2 a:hover {
+  width: 100%;
+  background: #e74141;
+  color: white;
 }
 
 article a.read-more-link:hover, article a.go-back-link:hover {

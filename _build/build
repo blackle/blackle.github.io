@@ -71,10 +71,12 @@ sub process_posts { my ($dir) = @_;
       my $index_article = $article_bits[0];
       $article = join '', @article_bits;
 
-
-      my $readmore_link = "<a class=\"read-more-link\" href=\"/$dir/$file/\">Permalink</a>";
-      if(scalar @article_bits == 2) {
-        $readmore_link = "<a class=\"read-more-link\" href=\"/$dir/$file/\">Read More &rarr;</a>";
+      my $readmore_link = "";
+      unless($dir =~ m/links/) {
+        $readmore_link = "<a class=\"read-more-link\" href=\"/$dir/$file/\"><span>Permalink</span></a>";
+        if(scalar @article_bits == 2) {
+          $readmore_link = "<a class=\"read-more-link\" href=\"/$dir/$file/\"><span>Read More &rarr;</span></a>";
+        }
       }
 
       $index_article = "<article id=\"$file\" class=\"index-article $cover_class\">\n$cover\n$index_article\n$readmore_link\n</article>\n";
@@ -88,7 +90,9 @@ sub process_posts { my ($dir) = @_;
       
       my $main_article = "<article class=\"main-article\">\n$cover\n$article\n</article>\n";
 
-      create_static("$dir/$file/index.html", $main_article);
+      unless($dir =~ m/links/) {
+        create_static("$dir/$file/index.html", $main_article);
+      }
       $post_num++;
   }
 
@@ -113,7 +117,7 @@ sub process_posts { my ($dir) = @_;
       push @pagearray, (join '', @page);
     }
 
-    create_static("$dir/index.html", $pagearray[0]."\n<nav>\n<a class=\"next\" href=\"/$dir/page/2/\">Next</a>\n<div class=\"clearfix\"></div>\n</nav>\n");
+    create_static("$dir/index.html", $pagearray[0]."\n<nav>\n<a class=\"next\" href=\"/$dir/page/2/\"><span>Next</span></a>\n<div class=\"clearfix\"></div>\n</nav>\n");
 
     for(my $pagenum = 2; $pagenum < scalar @pagearray + 1; $pagenum++){
       mkdir "$root/$dir/page/$pagenum";
@@ -121,13 +125,13 @@ sub process_posts { my ($dir) = @_;
       my $next = $pagenum + 1;
       my $prev_button = "";
       if($prev == 1) {
-        $prev_button = "<a class=\"back\" href=\"/$dir/\">Back</a>";
+        $prev_button = "<a class=\"back\" href=\"/$dir/\"><span>Back</span></a>";
       } else {
-        $prev_button = "<a class=\"back\" href=\"/$dir/page/$prev/\">Back</a>";
+        $prev_button = "<a class=\"back\" href=\"/$dir/page/$prev/\"><span>Back</span></a>";
       }
       my $next_button = "";
       if($next == scalar @pagearray) {
-        $next_button = "<a class=\"next\" href=\"/$dir/page/$next/\">Next</a>";
+        $next_button = "<a class=\"next\" href=\"/$dir/page/$next/\"><span>Next</span></a>";
       }
       create_static("$dir/page/$pagenum/index.html", $pagearray[$pagenum-1]."\n<nav>\n$prev_button\n$next_button\n<div class=\"clearfix\"></div>\n</nav>\n");
 
