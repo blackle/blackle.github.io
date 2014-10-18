@@ -127,6 +127,12 @@
           "zangle": 4.82,
           "radius": 0.5,
           "to": "1"
+        },
+        {
+          "xangle": 0.11,
+          "zangle": 3.74,
+          "radius": 0.5,
+          "to": "8"
         }
       ]
     },
@@ -136,6 +142,29 @@
         {
           "xangle": 0.14,
           "zangle": 1.59,
+          "radius": 0.5,
+          "to": "3"
+        },
+        {
+          "xangle": 0.17,
+          "zangle": 2.5,
+          "radius": 0.5,
+          "to": "8"
+        }
+      ]
+    },
+    "8": {
+      "image": "img/boxes/BOX_8.jpg",
+      "hotspots": [
+        {
+          "xangle": 0.14,
+          "zangle": 5.54,
+          "radius": 0.5,
+          "to": "1"
+        },
+        {
+          "xangle": 0.1,
+          "zangle": 0.64,
           "radius": 0.5,
           "to": "3"
         }

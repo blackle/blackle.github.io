@@ -80,6 +80,8 @@ var ttime = 200;
 var GAME_DATA;
 currentpos = "";
 
+var video, videoImage, videoImageContext, videoTexture;
+
 
 var httpRequest = new XMLHttpRequest();
 httpRequest.onreadystatechange = function() {
@@ -192,7 +194,29 @@ function init()
 		
 		return skyGeometry;
 	}
+
+	// create the video element
+	video = document.createElement( 'video' );
+	// video.id = 'video';
+	// video.type = ' video/ogg; codecs="theora, vorbis" ';
+	video.src = "output.webm";
+	video.load(); // must call after setting/changing source
 	
+	videoImage = document.createElement( 'canvas' );
+	videoImage.width = 1536;
+	videoImage.height = 1024;
+
+	videoImageContext = videoImage.getContext( '2d' );
+	// background color if no video present
+	videoImageContext.fillStyle = '#000000';
+	videoImageContext.fillRect( 0, 0, videoImage.width, videoImage.height );
+
+	videoTexture = new THREE.Texture( videoImage );
+	//videoTexture.minFilter = THREE.NearestFilter;
+	//videoTexture.magFilter = THREE.NearestFilter;
+
+	var materialVideo = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
+
 	var currentimg = GAME_DATA.areas[currentpos].image;
 	var image = THREE.ImageUtils.loadTexture(currentimg);
 	
@@ -215,12 +239,18 @@ function init()
 	materialBack.minFilter = THREE.NearestFilter;
 
 	//var skyMaterial = new THREE.MeshFaceMaterial( [] );
+	var skyBoxVideo = new THREE.Mesh( init_skybox(50), materialVideo );
 	var skyBox = new THREE.Mesh( init_skybox(50), material );
 	var skyBoxBack = new THREE.Mesh( init_skybox(100), materialBack );
 	scene.add( skyBox );
 	scene.add( skyBoxBack );
 
+	renderer.domElement.requestPointerLock = renderer.domElement.requestPointerLock ||
+                            renderer.domElement.mozRequestPointerLock ||
+                            renderer.domElement.webkitRequestPointerLock;
+
 	renderer.domElement.addEventListener("click", function(event) {
+		//video.play();
 		if(document.pointerLockElement){
 			if(!transition) {
 				var hotspot = activateHotspot();
@@ -292,7 +322,14 @@ function update()
 }
 
 function render() 
-{
+{	
+	if ( video.readyState === video.HAVE_ENOUGH_DATA ) 
+	{
+		videoImageContext.drawImage( video, 0, 0 );
+		if ( videoTexture ) 
+			videoTexture.needsUpdate = true;
+	}
+
 	renderer.render( scene, camera );
 }
 

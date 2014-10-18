@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
+  <head>
+    <title>Blackle Mori</title>
+    <link href="/index.css" type="text/css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+    <meta property="og:image" content="/images/logo.gif" />
+    <meta property="og:site_name" content="Blackle-Mori"/>
+    <meta name="viewport" content="initial-scale=0.6, width=device-width" />
+  </head>
+  <body>
+    <header>
+      <h1>Blackle-Mori</h1>
+      <nav>
+        <ul>
+          <li><a href="/">about</a></li>
+          <li><a href="http://writes.blackle-mori.com/">blog</a></li>
+          <li><a href="/portfolio/">portfolio</a></li>
+          <li><a href="/projects/">projects</a></li>
+          <li><a href="/links/">links</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+<article class="main-article">
+<figure style="background-image: url('/projects/webgl-myst/cover.jpg')" ></figure>
+<h2>WebGL Myst Game</h2>
+<time datetime="2014-10-17">2014-10-17</time>
+<p>I've been working making a Myst III style game in WebGL for a while now. I made one quite a bit ago that takes place in the middle of some clouds, but for whatever reason it doesn't work anymore. A lot of old WebGL demos stop working with age, regardless of who wrote them (I found a couple of Google sponsored one that just throws errors these days.)</p>
+<p>To get a look at the game in it's current state, <a target="_blank" href="/stuff/myst/">click here</a></p>
+<p>It requires chrome, but even then I've had some issues, read more under the cut.</p>
+
+<h3>Truncated JSON</h3>
+<p>Apparently, even if you're using the exact same version of chrome, on the exact same platform, the game sometimes breaks. I have a feeling it has something to do with the way the game's assets are loaded.</p>
+<p>In order to keep the preload code easy, I've combined all of the assets into a single JSON file by using <a href="http://en.wikipedia.org/wiki/Data_URI_scheme">base64 encoded data uris</a>. Although the file is big-about 11 MBs last time I checked-this makes the "loader" a single ajax request.</p>
+<p>Problem is, sometimes this file gets truncated. I have a feeling it has something to do with my host (I'm using github pages) but if it's not, I have no idea how to fix it. Is there a hidden limit on how big a JSON file can be, before the browser just says "no, that's enough, we're cutting it off?" Wouldn't that limit be on the javascript side, not the browser's file retrieval side?</p>
+<p>Whatever it is, it's keeping me from showing this to about 50% of chrome users, which is frustrating since I'm really proud of it.</p>
+<h3>Seams</h3>
+<p>The game essentially works by putting a box around the camera that is textured to look like the camera is really in an atrium of pillars. This technique is called skyboxing, and sorta resembles the way Wile E. Coyote would attempt to trick the roadrunner by painting a tunnel into the side of a cliff.</p>
+<p>However, I'm packing the textures for these boxes <a href="/stuff/myst/img/boxes2/BOX_0.jpg">like this</a>. Although the size of each subtexture in the image is a power of 2, there are still sometimes visible seams on the edges of the box, which ruins the illusion. I've been looking into how to force threejs to use integers for it's UV mappings, instead of fractions of the width/height. That might fix it.</p>
+<h3>Next Steps</h3>
+<p>I thought it would be neat to experiment with video textures, perhaps making video skyboxes. In Myst III any kind of animation was taken care of by cinematics; the user would lose control of the camera, it would move toward an area of the skybox and a video would play over it. I've been experimenting with setting the walls of the skybox to an animated webm video. These webm files are actually surprisingly small. About 10 MB per.</p>
+<p>Additionally, I need to figure out an elegant way to allow "zoom views." When the player clicks on an object they should be able to see a close of view of it in the form of a static image. Also, the zoom views should allow for interactivity. An example being a sliding box puzzle or the like.</p>
+</article>
+    </main>
+  </body>
+</html>
