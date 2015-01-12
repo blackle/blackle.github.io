@@ -29,10 +29,14 @@ close(BASE);
 my $root = '..';
 my $page_len = 8;
 
-sub create_static { my ($file, $contents) = @_;
+sub create_static($$;$) { my ($file, $contents, $title) = @_;
 
   open(FILE, ">$root/$file") or die $!;
-  print FILE $HTML_START;
+  if($title) {
+    print FILE ($HTML_START =~ s|<title>.+</title>|<title>$title - Blackle Mori</title>|r);
+  } else {
+    print FILE $HTML_START;
+  }
   print FILE $contents;
   print FILE $HTML_END;
   close(FILE);
@@ -40,6 +44,7 @@ sub create_static { my ($file, $contents) = @_;
 
 sub process_posts { my ($dir) = @_;
   opendir(DIR, "./$dir") or die $!;
+  my $indexgoodname = ucfirst($dir);
 
   mkdir "$root/$dir";
 
@@ -50,6 +55,8 @@ sub process_posts { my ($dir) = @_;
       next if $file =~ m/^[\._]/;
       mkdir "$root/$dir/$file";
       print "\t- $file\n";
+
+
 
 
       open(ARTICLE, "./$dir/$file/article.html") or die $!;
@@ -91,7 +98,13 @@ sub process_posts { my ($dir) = @_;
       my $main_article = "<article class=\"main-article\">\n$cover\n$article\n</article>\n";
 
       unless($dir =~ m/links/) {
-        create_static("$dir/$file/index.html", $main_article);
+        $article =~ m/<h2>([^<]+)<\/h2>/;
+        my $title = $1;
+        if($title) {
+          create_static("$dir/$file/index.html", $main_article, $title);
+        } else {
+          create_static("$dir/$file/index.html", $main_article);
+        }
       }
       $post_num++;
   }
@@ -107,7 +120,7 @@ sub process_posts { my ($dir) = @_;
 
   if(scalar @index <= $page_len) {
     my $index_full = join '', @index;
-    create_static("$dir/index.html", $index_full);
+    create_static("$dir/index.html", $index_full, $indexgoodname);
   } else {
     mkdir "$root/$dir/page";
 
@@ -117,7 +130,7 @@ sub process_posts { my ($dir) = @_;
       push @pagearray, (join '', @page);
     }
 
-    create_static("$dir/index.html", $pagearray[0]."\n<nav>\n<a class=\"next\" href=\"/$dir/page/2/\"><span>Next</span></a>\n<div class=\"clearfix\"></div>\n</nav>\n");
+    create_static("$dir/index.html", $pagearray[0]."\n<nav>\n<a class=\"next\" href=\"/$dir/page/2/\"><span>Next</span></a>\n<div class=\"clearfix\"></div>\n</nav>\n", $indexgoodname);
 
     for(my $pagenum = 2; $pagenum < scalar @pagearray + 1; $pagenum++){
       mkdir "$root/$dir/page/$pagenum";
@@ -133,7 +146,7 @@ sub process_posts { my ($dir) = @_;
       if($next == scalar @pagearray) {
         $next_button = "<a class=\"next\" href=\"/$dir/page/$next/\"><span>Next</span></a>";
       }
-      create_static("$dir/page/$pagenum/index.html", $pagearray[$pagenum-1]."\n<nav>\n$prev_button\n$next_button\n<div class=\"clearfix\"></div>\n</nav>\n");
+      create_static("$dir/page/$pagenum/index.html", $pagearray[$pagenum-1]."\n<nav>\n$prev_button\n$next_button\n<div class=\"clearfix\"></div>\n</nav>\n", $indexgoodname);
 
     }
   }
