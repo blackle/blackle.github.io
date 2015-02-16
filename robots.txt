@@ -1,3 +1,2 @@
 User-Agent: * 
-Disallow: */page/ 
 Host: blackle-mori.com
