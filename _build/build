@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use File::Copy;
 use Time::Local;
+use DateTime;
 
 open(BASE, "_base.html");
 
@@ -33,13 +34,28 @@ sub create_static($$;$) { my ($file, $contents, $title) = @_;
 
   open(FILE, ">$root/$file") or die $!;
   if($title) {
-    print FILE ($HTML_START =~ s|<title>.+</title>|<title>$title - Blackle Mori</title>|r);
+    my $HTML_START_TMP = $HTML_START;
+    $HTML_START_TMP =~ s|<title>.+</title>|<title>$title - Blackle Mori</title>|;
+    print FILE $HTML_START_TMP;
   } else {
     print FILE $HTML_START;
   }
   print FILE $contents;
   print FILE $HTML_END;
   close(FILE);
+}
+
+sub friendlydate { my ($time) = @_;
+  $time =~ m/(\d+)-(\d+)-(\d+)/;
+
+  $time = DateTime->new(
+      year      => $1,
+      month     => $2,
+      day       => $3,
+      time_zone => 'America/Toronto',
+  );
+  
+  return $time->strftime("%a %b %d, %Y")
 }
 
 sub process_posts { my ($dir) = @_;
@@ -64,7 +80,7 @@ sub process_posts { my ($dir) = @_;
       my $article = join '', @lines;
       close(ARTICLE);
 
-      $article =~ s/datetime="(.+)">/datetime="$1">$1/;
+      $article =~ s/datetime="(.+)">/"datetime=\"".$1."\">".friendlydate($1)/e;
 
       my $cover = "";
       my $cover_class = "no-cover";
