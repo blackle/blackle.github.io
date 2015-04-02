@@ -74,8 +74,14 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 15px;
 }
 
-p, span, time, nav a, li {
+p, span, time, nav a, ol, ul, table {
   font: 16px/1.6 "helvetica neue",helvetica,arial,sans-serif;
+}
+
+td {
+  text-align: center;
+  font-style: italic;
+  padding-bottom: 5px;
 }
 
 header h1 {
@@ -157,7 +163,7 @@ article.main-article {
   min-height: 260px;
 }
 
-article p {
+article p, article table {
   text-align: justify;
   margin-bottom: 20px;
   line-height: 1.6;
@@ -242,15 +248,24 @@ html {
 }
 
 span.pre {
-  font-family: monospace;
   display: inline-block;
   padding: 0 4px;
+  margin: 0 2px;
+}
+
+pre, .pre {
+  font-family: monospace;
   color: #444;
   border: 1px solid #DDD;
   font-size: 14px;
   vertical-align: top;
   border-radius: 3px;
-  margin: 0 2px;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 ol {

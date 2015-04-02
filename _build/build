@@ -5,6 +5,7 @@ use warnings;
 use File::Copy;
 use Time::Local;
 use DateTime;
+use File::Copy::Recursive qw(dircopy);
 
 open(BASE, "_base.html");
 
@@ -88,6 +89,10 @@ sub process_posts { my ($dir) = @_;
         $cover = "<figure style=\"background-image: url('/$dir/$file/cover.jpg')\" ></figure>";
         $cover_class = "with-cover";
         copy("./$dir/$file/cover.jpg", "$root/$dir/$file/cover.jpg") or die $!;
+      }
+
+      if (-e "./$dir/$file/img") {
+        dircopy("./$dir/$file/img", "$root/$dir/$file/img") or die $!;
       }
 
       my @article_bits = split /\[\[MORE\]\]/, $article;

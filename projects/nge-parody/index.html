@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
+  <head>
+    <title>Neon Genesis Evangelion Intro Parody Generator - Blackle Mori</title>
+    <link href="/index.css" type="text/css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+    <meta property="og:image" content="/images/logo.gif" />
+    <meta property="og:site_name" content="Blackle-Mori"/>
+    <meta name="viewport" content="initial-scale=0.6, width=device-width" />
+    <meta name="keywords" content="blackle-mori,blacklemori,blackle" />
+    <meta name="author" content="Blackle Mori" />
+  </head>
+  <body>
+    <header>
+      <h1>Blackle-Mori</h1>
+      <nav>
+        <ul>
+          <li><a href="/">about</a></li>
+          <li><a href="/portfolio/">portfolio</a></li>
+          <li><a href="/projects/">projects</a></li>
+          <li><a href="/links/">links</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+<article class="main-article">
+<figure style="background-image: url('/projects/nge-parody/cover.jpg')" ></figure>
+<h2>Neon Genesis Evangelion Intro Parody Generator</h2>
+<time datetime="2014-12-30">Tue Dec 30, 2014</time>
+<p>I don't really have any excuses for this. I forgot why I decided to start working on this.</p>
+<p>Basically I'm trying to make a webapp that allows users to edit parts of the NGE intro with their own pictures. This involves completely recreating the intro in HTML5 canvas.</p>
+<p>Read more for my progress.</p>
+
+<p>Currently I've completed about 900 frames of the intro, which corresponds to 38 seconds. That took me about a week.</p>
+<p>I've organized the code like this: there is a big object whose keys are numbers or ranges in string format, stuff like "18" and "18..24". The keys define the frame or interval of frames we're interested in. The values of these keys are arrays of objects. Each object in the array defines a sprite or some text that should appear in those frames. Here's an example of such an object:</p>
+<pre>
+{
+  type: "image",
+  asset: "ngelogo_glow",
+  x: 360,
+  y: 220,
+  bbw: 720,
+  bbh: 550,
+  zindex: 3,
+  tweens: [
+    {
+      attr: "sbw,sbh",
+      warper: easelvl4,
+      stops: [
+        {
+          frame: 413,
+          "sbw": 10,
+          "sbh": 10
+        },
+        {
+          frame: 431,
+          "sbw": 1,
+          "sbh": 1
+        }
+      ]
+    },
+    {
+      ctxattr: "globalCompositeOperation",
+      stops:[{frame: 0, "globalCompositeOperation": "screen"}]
+    }
+  ]
+}
+</pre>
+<p>This object defines the glowy "Evanglion" logo as it zooms into view. We have a few variables here. First, the asset name refers to a key in an ASSET dictionary whose value is an image object. The x, y, bbw, bbh variables define the position and scaling of the image, and the zindex defines how it should be ordered when the drawing routine writes the images to the canvas.</p>
+<p>The tweens array is a collection of objects that describe how the variables should change over time. The "warper" attribute is a function that modifies the interpolation between stops. The warper here causes the tween to ease-in.</p>
+<p>Here is another object:</p>
+<pre>
+{
+  type: "text",
+  textasset: "gainax",
+  font: "70px matisse2, serif",
+  color: "#ffffff",
+  x: 360,
+  y: 300,
+  zindex: 2,
+  tweens: TWEENS.gainax
+}
+</pre>
+<p>This object puts the phrase "GAINAX" in the middle of the screen, and uses a tween defined elsewhere to have it zoom out. The font "matisse2" is the original font used in the NGE intro, I got it by sending codepoints en masse to an online font previewer, then concatenating all the partial web fonts it returned. Unfortunately its missing a few characters (I had to synthesize one in fontforge for the main title screen) but it'll do.</p>
+<p>Now I'm not comfortable posting it yet because it's not done. In its place are a few choice frames from my version, compared to the frames I used for reference.</p>
+<center>
+<table width="100%">
+  <tr>
+    <td colspan="2">Frame 148</td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="./img/old_0148.jpg" width="100%"></td>
+    <td width="50%"><img src="./img/new_148.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td colspan="2">Frame 300</td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="./img/old_0300.jpg" width="100%"></td>
+    <td width="50%"><img src="./img/new_300.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td colspan="2">Frame 504</td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="./img/old_0504.jpg" width="100%"></td>
+    <td width="50%"><img src="./img/new_504.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td colspan="2">Frame 704</td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="./img/old_0704.jpg" width="100%"></td>
+    <td width="50%"><img src="./img/new_704.png" width="100%"></td>
+  </tr>
+</table>
+</center>
+<p>And here's a video of the whole thing.</p>
+<p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4LYMXdFcWSo?rel=0" frameborder="0" allowfullscreen></iframe>
+</p>
+</article>
+    </main>
+  </body>
+</html>
