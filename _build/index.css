@@ -345,7 +345,7 @@ ol {
 @media all and (max-width: 599px) {
 	header h1 {
 		font-size: 25px;
-    letter-spacing: 15px;
+    letter-spacing: 5px;
 	}
 
 	body {
