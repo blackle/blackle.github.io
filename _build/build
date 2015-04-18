@@ -202,3 +202,6 @@ foreach my $file (@files) {
 
 `yuicompressor index.css -o $root/index.css`;
 `chmod 755 -R $root`;
+
+chdir($root) or die "$!";
+`./_create_sitemap.sh`
