@@ -57,7 +57,7 @@ sub friendlydate { my ($time) = @_;
       time_zone => 'America/Toronto',
   );
   
-  return $time->strftime("%a %b %e, %Y")
+  return $time->strftime("Posted on %a %b %e, %Y by Isabelle Knott")
 }
 
 sub process_posts { my ($dir) = @_;
@@ -82,7 +82,12 @@ sub process_posts { my ($dir) = @_;
       my $article = join '', @lines;
       close(ARTICLE);
 
-      $article =~ s/datetime="(.+)">/"datetime=\"".$1."\">".friendlydate($1)/e;
+
+      unless($dir =~ m/links/) {
+        $article =~ s/datetime="(.+)">/"datetime=\"".$1."\">".friendlydate($1)/e;
+      } else {
+        $article =~ s/<time/<time class="hidden"/;
+      }
 
       my $cover = "";
       my $cover_class = "no-cover";
