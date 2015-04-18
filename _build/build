@@ -6,6 +6,7 @@ use File::Copy;
 use Time::Local;
 use DateTime;
 use File::Copy::Recursive qw(dircopy);
+use File::Slurp;
 
 open(BASE, "_base.html");
 
@@ -56,7 +57,7 @@ sub friendlydate { my ($time) = @_;
       time_zone => 'America/Toronto',
   );
   
-  return $time->strftime("%a %b %d, %Y")
+  return $time->strftime("%a %b %e, %Y")
 }
 
 sub process_posts { my ($dir) = @_;
