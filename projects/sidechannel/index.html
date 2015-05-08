@@ -36,9 +36,12 @@
 <figure style="background-image: url('/projects/sidechannel/cover.jpg')" ></figure>
 <h2>SideChannel (A Game)</h2>
 <time datetime="2015-05-08">Posted on Fri May  8, 2015 by Isabelle Knott</time>
-<p>I'm working on a point and click adventure game with the working title "SideChannel." Its called that for a reason, part of the game must be played with an ssh client.</p>
-
-<p></p>
+<p>I'm working on a point-and-click adventure game with the working title "SideChannel." Its called SideChannel for a reason, the game must be played partly with an ssh client.</p>
+<hr/>
+<p>To play the game you'd have two windows open at all times, one is the actual point-and-click game (probably made with <a href="https://www.libsdl.org/">SDL</a>) and the other is an ssh client that is connected to a port opened by the game (you'd connect to with something like <span class="pre">ssh game@localhost:8888</span>).</p>
+<p>The game isn't much yet, both in code and in story, but I have some big ideas. The main idea of the game is that the world you explore is isomorphic to a linux computer.</p>
+<p>For example: there might be a room in the world that represents the folder <span class="pre">/bin</span>. The room would be filled with objects, all of which correspond to unique binaries on the system, like a stuffed cat literally being the <span class="pre">cat</span> command.</p>
+<p>A puzzle might involve painting a part of them blue, which would be equivalent to running <span class="pre">chmod +x</span> on them (remember the colour blue in 3-bit rgb is 0b001). In this way the character in the point-and-click is performing root commands that the ssh client doesn't have permission to do, hence the name "SideChannel."</p>
 <div class="twitter-button"><a href="https://twitter.com/share" class="twitter-share-button" data-via="blacklemon67" data-dnt="true">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 </div>

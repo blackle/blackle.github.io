@@ -108,7 +108,7 @@ sub process_posts { my ($dir) = @_;
 
       my @article_bits = split /\[\[MORE\]\]/, $article;
       my $index_article = $article_bits[0];
-      $article = join '', @article_bits;
+      $article = join '<hr/>', @article_bits;
 
       my $readmore_link = "";
       unless($dir =~ m/links/) {
@@ -132,7 +132,7 @@ sub process_posts { my ($dir) = @_;
       unless($dir =~ m/links/) {
         $article =~ m/<h2>([^<]+)<\/h2>/;
         my $title = $1;
-	$main_article =~ s|</article>|$twitter</article>|;
+        $main_article =~ s|</article>|$twitter</article>|;
         if($title) {
           create_static("$dir/$file/index.html", $main_article, $title);
         } else {

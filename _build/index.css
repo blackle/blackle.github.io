@@ -27,6 +27,12 @@ body {
   padding: 0;
 }
 
+hr {
+  border: 0;
+  border-top: 1px solid #EEE;
+  margin-bottom: 20px;
+}
+
 header {
   background-color: #e74141;
   color: white;

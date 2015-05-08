@@ -39,7 +39,7 @@
 <p>I've been working making a Myst III style game in WebGL for a while now. I made one quite a bit ago that takes place in the middle of some clouds, but it stopped working.</p>
 <p>To get a look at the game in it's current state, <a target="_blank" href="/stuff/myst/">click here</a></p>
 <p>Read more under the cut.</p>
-
+<hr/>
 <p>The game essentially works by putting a box around the camera that is textured to look like the camera is really in an atrium of pillars. This technique is called skyboxing, and sorta resembles the way Wile E. Coyote would attempt to trick the roadrunner by painting a tunnel into the side of a cliff.</p>
 <p>I'm packing the textures for these boxes <a href="/stuff/myst/img/boxes2/BOX_0.jpg">like this</a>. Although the size of each subtexture in the image is a power of 2, there are still sometimes visible seams on the edges of the box, which ruins the illusion. I've been looking into how to force threejs to use integers for it's UV mappings, instead of fractions of the width/height. That might fix it.</p>
 <p>In order to keep the preload code easy, I've combined all of the assets into a single JSON file by using <a href="http://en.wikipedia.org/wiki/Data_URI_scheme">base64 encoded data uris</a>. Although the file is big&mdash;about 11 MBs last time I checked&mdash;the loading code is just a single ajax request.</p>
