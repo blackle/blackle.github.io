@@ -39,7 +39,43 @@
 <p>This school year I took <a href="http://www.cs.toronto.edu/~guerzhoy/320/">CSC320: Introduction to Visual Computing</a>. One of our assignments was to make a program that can turn a photograph into a painting. We were given starter code, a paper about painterly rendering, and some mandatory objectives. Outside of that, we were allowed to just "go nuts."</p>
 <p>So I went nuts</p>
 <hr/>
-<p></p>
+<p>You can read the project outline <a href="http://www.cs.toronto.edu/~guerzhoy/320/proj2/">here</a>, which includes links to the handout and the paper that describes the process we used.</p>
+<p>Going as far as the assignment required resulted in a program that did this:</p>
+<table width="100%">
+  <tr>
+    <td>Input</td>
+    <td>Output</td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="./img/mountains.jpg" width="100%"></td>
+    <td width="50%"><img src="./img/mountains_painted_6.jpg" width="100%"></td>
+  </tr>
+</table>
+<p>It looks like vomit.</p>
+<p>The program works by randomly selecting positions in the image and drawing a stroke. The colour of the stroke is the colour of the pixel at that point, and its orientation is determined by the orientation of nearby edges.</p>
+<p>To make the image look more artisanal the colour and orientation are twiddled a bit. This is where the vomit look comes from. Because the colour is in RGB a small change in any channel means a big change to the colour's hue. This effect is especially pronounced when the colour is a shade of gray: suppose the red channel goes up and the blue and green channels go down, then we'll have a shade of red. An artist wouldn't make this mistake when they were going for gray, so the program shouldn't, either.</p>
+<p>To fix this problem I changed all the colours to HSV space, or hue, saturation, and value. This colour space is more in line with how humans think about colour; you say a colour is "yellowish green" not "reddish green.. with more green." In this colour space the level of hue change can be easily controlled, as can value and saturation.</p>
+<p>This brings me to the second reason the picture looks like vomit, it's too dark and too saturated. What I want is a gorgeous Van Gogh with bright pastel colours. Pastel colours are low saturation high brightness. Because we're working in HSV it's easy to turn a colour into its pastel version, just divide the saturation in half and take the square root of the value.</p>
+<p>I made a few other changes to the final code to suit my tastes, but I think the colour modification is the most striking. Here is my final program:</p>
+<table width="100%">
+  <tr>
+    <td>Input</td>
+    <td>Output</td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="./img/mountains.jpg" width="100%"></td>
+    <td width="50%"><img src="./img/mountains_painted_7.jpg" width="100%"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="./img/desert.jpg" width="100%"></td>
+    <td width="50%"><img src="./img/desert_painted.jpg" width="100%"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="./img/dove_lake.jpg" width="100%"></td>
+    <td width="50%"><img src="./img/dove_lake_painted.jpg" width="100%"></td>
+  </tr>
+</table>
+<p>The code for the program can be found in <a href="https://github.com/blackle/Year_3/tree/master/CSC320/A2/Report">its github repo</a>, as well as <a href="https://github.com/blackle/Year_3/raw/master/CSC320/A2/Report/p2.pdf">the report</a> I made for the assignment.</p>
 <div class="twitter-button"><a href="https://twitter.com/share" class="twitter-share-button" data-via="blacklemon67" data-dnt="true">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 </div>
