@@ -32,6 +32,11 @@ close(BASE);
 my $root = '..';
 my $page_len = 8;
 
+open(TWITTER, "./_twitter.html") or die $!;
+my @_twitterlines = <TWITTER>;
+my $twitter = join '', @_twitterlines;
+close(TWITTER);
+
 sub create_static($$;$) { my ($file, $contents, $title) = @_;
 
   open(FILE, ">$root/$file") or die $!;
@@ -127,6 +132,7 @@ sub process_posts { my ($dir) = @_;
       unless($dir =~ m/links/) {
         $article =~ m/<h2>([^<]+)<\/h2>/;
         my $title = $1;
+	$main_article =~ s|</article>|$twitter</article>|;
         if($title) {
           create_static("$dir/$file/index.html", $main_article, $title);
         } else {

@@ -57,7 +57,10 @@
 <p>To solve the problem I did something pretty bad. Often when you install ALSA or pulseaudio you get some utility programs as well. Specifically I'm talking about <span class="pre">aplay</span> and <span class="pre">paplay</span>. Both are command line programs that send raw data to the sound server. I decided to offload the actual playback stuff to one of these programs, using the c code to exclusively set up the <span class="pre">gzip | perl | aplay/paplay</span> scaffolding.</p>
 <p>By assuming the existence of certain programs on the system, I was able to get my program well below 4k (3712 bytes). I think I can get that value smaller by re-writing the thing in assembly, because the only functions I'm using are system calls.</p>
 <p>I've put the c file, the header that includes the gzipped perl code and a makefile into <a href="/stuff/audio-dot-pl/audio.zip">this zip file</a> so you can enjoy the song yourself.</p>
-</article>
+<div class="twitter-button"><a href="https://twitter.com/share" class="twitter-share-button" data-via="blacklemon67" data-dnt="true">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</div>
+<div class="clearfix"></div></article>
     </main>
   </body>
 </html>
