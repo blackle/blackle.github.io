@@ -36,12 +36,28 @@
 <figure style="background-image: url('/projects/sidechannel/cover.jpg')" ></figure>
 <h2>SideChannel (A Game)</h2>
 <time datetime="2015-05-08">Posted on Fri May  8, 2015 by Isabelle Knott</time>
-<p>I'm working on a point-and-click adventure game with the working title "SideChannel." Its called SideChannel for a reason, the game must be played partly with an ssh client.</p>
+<p>I'm working on a point-and-click adventure game with the working title "SideChannel." Its called SideChannel for a reason, the game must be played partly with an SSH client.</p>
 <hr/>
-<p>To play the game you'd have two windows open at all times, one is the actual point-and-click game (probably made with <a href="https://www.libsdl.org/">SDL</a>) and the other is an ssh client that is connected to a port opened by the game (you'd connect to with something like <span class="pre">ssh game@localhost:8888</span>).</p>
+<p>To play the game you'd have two windows open at all times, one is the actual point-and-click game (probably made with <a href="https://www.libsdl.org/">SDL</a>) and the other is an SSH client that is connected to a port opened by the game (you'd connect to with something like <span class="pre">ssh username@localhost:8888</span>).</p>
 <p>The game isn't much yet, both in code and in story, but I have some big ideas. The main idea of the game is that the world you explore is isomorphic to a linux computer.</p>
-<p>For example: there might be a room in the world that represents the folder <span class="pre">/bin</span>. The room would be filled with objects, all of which correspond to unique binaries on the system, like a stuffed cat literally being the <span class="pre">cat</span> command.</p>
-<p>A puzzle might involve painting a part of them blue, which would be equivalent to running <span class="pre">chmod +x</span> on them (remember the colour blue in 3-bit rgb is 0b001). In this way the character in the point-and-click is performing root commands that the ssh client doesn't have permission to do, hence the name "SideChannel."</p>
+<p>For example: there might be a room in the world that represents the folder <span class="pre">/bin</span>. The room would be filled with objects, all of which correspond to unique binaries on the system, like a stuffed cat literally being the <span class="pre">cat</span> command. A puzzle might involve painting a part of these objects blue, which would be equivalent to running <span class="pre">chmod -r -w +x</span> on them (remember the colour blue in 3-bit rgb is 0b001). In this way the character in the point-and-click is performing root commands that the SSH client doesn't have permission to do, hence the name "SideChannel."</p>
+<p>As far as story goes, the only idea I have is that the character is a posthuman living in a posthuman world. More specifically, their "domain" has been disconnected from the wider network, effectively stranding them and their neighbors in a bubble universe (think <a href="https://en.wikipedia.org/wiki/Netsplit">netsplit</a>). Finding out why this happened would form the bulk of the game.</p>
+<p>This game would take a lot of work, not only the point-and-click side (which requires assets, game logic, and a good story) but also the shh side (which requires a working shell, a virtual file system, and enough fidelity to feel like linux).
+<p>For the point-and-click side I have a very clear idea of its aesthetics. I want it to look like Cyan's <a href="http://www.inventinginteractive.com/wp-content/uploads/2010/04/1987_CyanManhole_animation.gif" ><i>The Manhole</i></a>, strictly black and white with cool dithering patterns.</p>
+<p>Here is a proof of concept for the style:</p>
+<p><img src="./img/demo_screenshot.jpg" style="width:100%" /></p>
+<p>The screenshot was made in blender, the pattern the compositor uses to dither the image is decided by material index. For the actual game I'm either going to render each scene in blender or use OpenGL with fancy pixel shaders.</p>
+<p>For the shell part of the game there are three options:</p>
+<ol>
+  <li>Literally have a linux box running in a hardware virtualizer like QEMU.</li>
+  <li>Implement all shell commands in game logic. The binary files on the virtual filesystem would just be dummy files.</li>
+  <li>Invent a virtual CPU architecture and re-write all shell commands for it, including the shell itself. The game logic just mimics the kernel.</li>
+</ol>
+<p>The list is ranked from easiest to hardest. They say every great programmer is lazy. Apparently I'm not a great programmer. I opted for number 3.</p>
+<p>What I have can be found in the game's <a href="https://github.com/blackle/sidechannel/tree/master/unixbox">github repo</a>. In short, I have written up a spec for a mips-like 16-bit CPU and have implemented all of its instructions in c. I also have a rudimentary assembly compiler for the CPU which is written in perl. The executable format for the computer is just bytecode with the initial values for the instruction and stack pointer in a 4 byte header.</p>
+<p>There is a dedicated syscall instruction. When the emulator sees a syscall instruction it calls a function called <span class="pre">sc_syscall</span> which simulates what a posix kernel would do. This means I don't have to write an entire kernel for the 16-bit processor.</p>
+<p>The only implemented syscalls are <span class="pre">fork</span>, <span class="pre">write</span>, <span class="pre">read</span>, and <span class="pre">exit</span>. Before progressing further I have implement a virtual filesystem for all these system calls to work with. I also need to implement the SSH server so I can make tty devices functional.</p>
+<p>Stay tuned for updates!</p>
 <div class="twitter-button"><a href="https://twitter.com/share" class="twitter-share-button" data-via="blacklemon67" data-dnt="true">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 </div>
