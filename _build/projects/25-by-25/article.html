@@ -4,7 +4,6 @@
 <p>Use your arrow keys to explore the 25&times;25 grid to collect the 49 starmaps. Uses audio, and can get very loud near the end. To play, <a target="_blank" href="/stuff/25x25/">click here</a></p>
 <p>Below the cut is a short description of how the game works</p>
 [[MORE]]
-<h3>Internals</h3>
 <p>So this game is made entirely with HTML and Javascript. There is no canvas, it's all div and img tags. How does scrolling work? The body element is given a height and width of 100% and an overflow of hidden. The body tag acts as the "viewport." Inside the body is a div with a width and height of about 25000px. This div is the "game board."</p>
 <p>The Javascript uses scrollLeft and scrollTop to move the viewport over the game board. The user affects this with the arrow keys. There is an internal clock that checks if any of the keys are pressed, and updates the viewport's momentum accordingly.</p>
 <p>I have not minified the js for this game, so feel free to take a look at it if you're interested. It's not that well structured, but if you're just starting out it has a few things that can make you think.</p>
