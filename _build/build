@@ -213,6 +213,7 @@ foreach my $file (@files) {
 }
 
 `yuicompressor index.css -o $root/index.css`;
+`yuicompressor print.css -o $root/print.css`;
 `chmod 755 -R $root`;
 
 chdir($root) or die "$!";
