@@ -29,3 +29,24 @@ p a[href^="#"]:after {
 p a[href^="http://"]:after, a[href^="https://"]:after {
   content: " [" attr(href) "]";
 }
+
+span.pre {
+  display: inline-block;
+  padding: 0 4px;
+  margin: 0 2px;
+}
+
+pre, .pre {
+  font-family: monospace;
+  color: #444;
+  border: 1px solid #DDD;
+  font-size: 14px;
+  vertical-align: top;
+  border-radius: 3px;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
