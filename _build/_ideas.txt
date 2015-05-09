@@ -1,0 +1,12 @@
+article ideas:
+ - lethargic
+ - blackle_backgrounder
+ - rc.lua
+ - 
+
+tutorials? (what have you learned the hard way?)
+ - how to scrape websites with posix commands
+ - dithering shader in blender
+ - making hollow cylinders in mathematica
+ - some css stuff?
+ - 
