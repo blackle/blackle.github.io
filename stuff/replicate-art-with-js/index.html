@@ -1,0 +1,114 @@
+
+<!-- saved from url=(0036)http://jsart.co/content/art-replica/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>DEMO : Replicating Art With JS (blackle-mori edition)</title>
+</head>
+
+
+<body>
+<div>
+    <div style="float: left; width:500px">
+        <h4>Original</h4>
+        <img style="width: 500px;" src="./files/jsart_infinite_dots.png">
+    </div>
+
+    <div style="float: left; width:500px;margin: 0 0 0 12px;">
+        <h4>Replica</h4>
+        <canvas id="replica" width="500" height="677"></canvas>
+    </div>
+
+</div>
+
+
+
+<script src="./files/underscore-min.js" type="text/javascript"></script>
+<script src="./files/hidpi.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    var canvas = document.getElementById('replica');
+    var ctx = canvas.getContext('2d');
+
+    //turn this off for straight lines
+    var distortion_enabled = true;
+
+    //function that distorts x and y coordinates slightly
+    function xy_distort(x,y) {
+        //it would be cool to replace this with perlin noise
+        var xd = Math.cos(x/80.0) * Math.cos(y/80.0) * 6;
+        var yd = -Math.cos(x/80.0) * Math.cos(y/80.0) * 6;
+
+        if(distortion_enabled) {
+            return [x + xd, y + yd];
+        } else {
+            return [x, y];
+        }
+    }
+
+    //make css rgb string
+    function rgb(r, g, b){
+        return "rgb("+Math.floor(r)+","+Math.floor(g)+","+Math.floor(b)+")";
+    }
+
+
+    //draw circle
+    function circle(radius, x, y) {
+
+        var coords = xy_distort(x,y);
+
+        //fill and border colour
+        var f_r = 191.0; var f_g = 0.0; var f_b = 14.0;
+        var b_r = 119.0; var b_g = 21.0; var b_b = 34.0;
+
+        //ramp interpolation factor
+        var r = Math.pow(Math.min(radius/6.0, 1.0), 0.25);
+
+        ctx.fillStyle = rgb(f_r, f_g, f_b);
+        
+        //as radius gets smaller blend the strokestyle with the fillstyle
+        ctx.strokeStyle = rgb( 
+            b_r * r + f_r * (1.0-r),
+            b_g * r + f_g * (1.0-r),
+            b_b * r + f_b * (1.0-r) );
+
+
+        ctx.beginPath();
+        ctx.arc(coords[0], coords[1], radius, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.fill();
+        ctx.closePath();
+    };
+
+    //draw a vertical line of circles
+    function circle_line(rad, x) {
+        var y = 0;
+
+        while(y < 677+rad*2) {
+            //rad_offset is (kinda) gaussian, high values are unlikely
+            var rad_offset = Math.pow(Math.random() * Math.random(), 2.5) /2.0;
+
+            circle(rad + rad_offset, x, y);
+            var y_offset = rad*2.5
+                + (6.0-rad)/2.0
+                + (Math.random()-0.5)*(rad+4.0)/6.0;
+
+            y += y_offset * (6.0 - rad)/6.0 + 2.3*rad * (rad)/6.0;
+        }
+    } 
+
+    var x = -30;
+    var i = 0;
+    //these determine the stripe width/radius
+    var offs = [6, 4, 3, 2, 1, 0.6, 0.5, 0.6, 1, 2, 3, 4];
+
+    //draw all vertical strips
+    while(x < 510) {
+        i++;
+        circle_line(offs[i % offs.length], x);
+        offsetavg = offs[i % offs.length ] + offs[(i+1) % offs.length];
+        x+= Math.pow(offsetavg, 0.55)*3.2 ;
+
+    }
+
+</script>
+
+</body></html>
