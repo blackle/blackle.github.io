@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pifont}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing}
+\usepackage[active,tightpage]{preview}
+\usepackage{xparse}
+\ExplSyntaxOn
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{5pt}%
+
+\definecolor{papercolor}{RGB}{248,246,227}
+\definecolor{papercolorbk}{RGB}{242,238,216}
+
+\begin{document}
+\begin{tikzpicture}
+  \draw [fill=papercolor] (0.25,0.25) rectangle (1.5,2.01776695297);
+  \draw [dashed] (0.25,0.25) -- (1.5,1.5);
+
+  \draw [->] (1.3,0.45) .. controls (1,1) .. (0.45,1.3);
+
+  \draw [thick,->] (1.6,1.13388347649) -- (1.9,1.13388347649);
+  \draw [fill=papercolor] (2.0,1.5) rectangle (3.25,2.01776695297);
+  \draw [fill=papercolorbk] (2.0,1.5) -- (3.25,1.5) -- (2.0, 0.25) -- cycle;
+
+\end{tikzpicture}
+\end{document}

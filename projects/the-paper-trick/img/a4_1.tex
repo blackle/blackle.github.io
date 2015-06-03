@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pifont}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing}
+\usepackage[active,tightpage]{preview}
+\usepackage{xparse}
+\ExplSyntaxOn
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{5pt}%
+
+\definecolor{papercolor}{RGB}{248,246,227}
+
+\begin{document}
+\begin{tikzpicture}
+  \draw [fill=papercolor] (0.25,0.25) rectangle (1.5,2.01776695297) node[pos=.5] {A4};
+  \draw [decorate,decoration={brace,amplitude=5pt},xshift=-4pt,yshift=0pt]
+    (0.25,0.25) -- (0.25,2.01776695297) node [black,midway,xshift=-0.4cm] 
+    {\tiny $ \sqrt{2}\; $};
+  \draw [decorate,decoration={brace,mirror,amplitude=5pt},yshift=-4pt,xshift=0pt]
+    (0.25,0.25) -- (1.5,0.25) node [black,midway,yshift=-0.35cm] 
+    {\tiny $ 1 $};
+
+
+  \draw [fill=papercolor] (1.75,0.25) rectangle (3.0,2.01776695297) node[pos=.5] {A4};
+  \draw [dashed] (1.75,1.13388347649) -- (3.0,1.13388347649) node[pos=0.2,yshift=1.5pt] {\footnotesize \ding{33}};
+
+  \draw[thick,->] (3.1,1.13388347649) -- (3.4,1.13388347649);
+
+  \draw [fill=papercolor] (3.5,0.25) rectangle (4.75,1.13388347649) node[pos=.5] {A5};
+  \draw [fill=papercolor] (3.5,1.13388347649) rectangle (4.75,2.01776695297) node[pos=.5] {A5};
+
+  \draw [decorate,decoration={brace,mirror,amplitude=5pt},xshift=4pt,yshift=0pt]
+    (4.75,0.25) -- (4.75,1.13388347649) node [black,midway,xshift=0.3cm] 
+    {\tiny $ 1 $};
+  \draw [decorate,decoration={brace,mirror,amplitude=5pt},xshift=4pt,yshift=0pt]
+    (4.75,1.13388347649) -- (4.75,2.01776695297) node [black,midway,xshift=0.3cm] 
+    {\tiny $ 1 $};
+  \draw [decorate,decoration={brace,mirror,amplitude=5pt},yshift=-4pt,xshift=0pt]
+    (3.5,0.25) -- (4.75,0.25) node [black,midway,yshift=-0.35cm] 
+    {\tiny $ \sqrt{2} $};
+\end{tikzpicture}
+\end{document}

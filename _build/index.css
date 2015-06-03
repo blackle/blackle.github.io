@@ -227,6 +227,17 @@ article figure {
   /*background-attachment: fixed;*/
 }
 
+article img.figure {
+  max-width: 100%;
+  display: block;
+  margin: 0px auto 20px;
+}
+
+article img.inline {
+  vertical-align: -2px;
+  margin: 0 2px;
+}
+
 /*article time {
   position: absolute;
   top: -20px;
