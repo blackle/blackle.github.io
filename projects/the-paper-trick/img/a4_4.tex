@@ -1,0 +1,32 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pifont}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing}
+\usepackage[active,tightpage]{preview}
+\usepackage{xparse}
+\ExplSyntaxOn
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{5pt}%
+
+\definecolor{papercolor}{RGB}{248,246,227}
+\definecolor{papercolorbk}{RGB}{242,238,216}
+
+\begin{document}
+\begin{tikzpicture}
+
+
+  \draw [fill=papercolor] (0.25,1.5) rectangle (1.5,2.01776695297);
+  \draw [fill=papercolorbk] (0.25,1.5)  -- (1.5,1.5) node[pos=0.5,yshift=1.5pt] {\footnotesize \ding{33}} -- (0.25, 0.25) -- cycle ;
+  \draw[thick,->] (1.6,1.13388347649) -- (1.9,1.13388347649);
+
+
+  \begin{scope}[shift={(0.6,0.25)}]
+    \draw [fill=papercolor] (1.5,0.25) rectangle (2.01776695297,1.5);
+  \end{scope}
+
+\end{tikzpicture}
+\end{document}

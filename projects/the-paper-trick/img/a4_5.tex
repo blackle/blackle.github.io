@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pifont}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing}
+\usepackage[active,tightpage]{preview}
+\usepackage{xparse}
+\ExplSyntaxOn
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{5pt}%
+
+\definecolor{papercolor}{RGB}{248,246,227}
+\definecolor{papercolorbk}{RGB}{242,238,216}
+
+\begin{document}
+\begin{tikzpicture}
+
+  \draw [fill=papercolor] (0.25,0.25) rectangle (1.026650429455,2.125);
+  \draw [dashed] (0.25, 0.25) -- (1.026650429455,1.026650429455);
+
+  \draw [->] (0.9,0.35) .. controls (0.75,0.75) .. (0.35,0.9);
+
+  \draw [thick,->] (1.1,1.1875) -- (1.4,1.1875);
+
+
+  \begin{scope}[shift={(1.25,0)}]
+
+    \draw [fill=papercolor] (0.25,1.026650429455) rectangle (1.026650429455,2.125);
+    \draw [fill=papercolorbk] (0.25,0.25) -- (0.25,1.026650429455) -- (1.026650429455,1.026650429455) node[pos=0.5,yshift=1.5pt] {\footnotesize \ding{33}} -- cycle;
+
+    \draw [thick,->] (1.1,1.1875) -- (1.4,1.1875);
+
+
+    \begin{scope}[shift={(1.25,0.375)}]
+      \draw [fill=papercolor] (0.25,0.25) rectangle (1.026650429455,1.348349570545);
+      \draw [dashed] (0.25, 0.25) -- (1.026650429455,1.026650429455);
+
+      \draw [->] (0.9,0.35) .. controls (0.75,0.75) .. (0.35,0.9);
+
+      \draw [thick,->] (1.1,.799174785272) -- (1.4,.799174785272);
+
+
+      \begin{scope}[shift={(1.25,0)}]
+
+        \draw [fill=papercolor] (0.25,1.026650429455) rectangle (1.026650429455,1.348349570545);
+        \draw [fill=papercolorbk] (0.25,0.25) -- (0.25,1.026650429455) -- (1.026650429455,1.026650429455) -- cycle;
+
+      \end{scope}
+    \end{scope}
+
+  \end{scope}
+
+
+\end{tikzpicture}
+\end{document}

@@ -39,23 +39,28 @@
 <time datetime="2015-06-03">Posted on Wed Jun  3, 2015 by Isabelle Knott</time>
 <p>This is a cute little mathematical trick I came up with in my 1st year of undergrad. By simply folding a sheet of A4 paper a certain way you can find an upper and lower bound for the square root of two.</p>
 <hr/>
-<p>The core of this trick depends on a special property of the <a href="http://en.wikipedia.org/wiki/Paper_size#A_series">A paper standard</a>. The long side of an A-type sheet of paper is exactly <img src="./img/sqrt2.png" class="inline" alt="sqrt(2)" \> times the length of the short side. This is so when you cut it in half you get two smaller sheets with the same ratio as the original.</p>
+<p>The core of this trick depends on a special property of the <a href="http://en.wikipedia.org/wiki/Paper_size#A_series">A paper standard</a>. The long side of an A-type sheet of paper is exactly <img src="./img/sqrt2.png" class="inline" alt="sqrt(2)" /> times the length of the short side. This is so when you cut it in half you get two smaller sheets with the same ratio as the original.</p>
 <img class="figure" src="./img/a4_1.png" alt="Ratios of an A series sheet of paper." />
-<p>Already we have a good, albeit empirical, lower bound for <img src="./img/sqrt2.png" class="inline" alt="sqrt(2)" \>:</p>
+<p>Already we have a good, albeit empirical, lower bound for <img src="./img/sqrt2.png" class="inline" alt="sqrt(2)" />:</p>
 <img class="figure" src="./img/sqrt2gt1.png" alt="A simple lower bound for sqrt(2)." />
 <p>Now for our upper bound. First, we fold the short side so it lies flush with the long side, making a crease that goes diagonally.</p>
 <img class="figure" src="./img/a4_2.png" alt="Step 1: make a diagonal crease." />
 <p>Then using the short edge as a guide, fold the leftovers and flip the whole thing over.</p>
 <img class="figure" src="./img/a4_3.png" alt="Step 2: fold the leftovers and flip." />
-<p>We're interested in the small isosceles right triangle formed by the leftover section, circled in red. The opposite and adjacent sides are both length <img src="./img/sqrt2minus1.png" class="inline" alt="sqrt(2) - 1" \> and since it is a right triangle we can calculate the area to be:</p>
+<p>We're interested in the small isosceles right triangle formed by the leftover section, circled in red. The opposite and adjacent sides are both length <img src="./img/sqrt2minus1.png" class="inline" alt="sqrt(2) - 1" /> and since it is a right triangle we can calculate the area to be:</p>
 <img class="figure" src="./img/a4_calc.png" alt="Formula for area of triangle." />
 <p>Since we know the triangle exists (citation: we can touch it) this must mean its area is greater than zero. Rearranging the inequality gives us our upper bound:</p>
 <img class="figure" src="./img/sqrt2lt1pt5.png" alt="Upper bound for sqrt(2)." />
 <p>Displayed together on one line our inequalities are:</p>
 <img class="figure" src="./img/bounds.png" alt="Upper and lower bound for sqrt(2)." />
-<p>Obviously this isn't the "correct" way to compute <img src="./img/sqrt2.png" class="inline" alt="sqrt(2)" \>, for that you'd use newton's method or a faster converging series. What's interesting is the bounds we got are the first two approximations newton's method gives with the initial guess of 1, though this is likely <a href="http://en.wikipedia.org/wiki/Strong_Law_of_Small_Numbers">a coincidence</a>. To me this suggests there are more complicated folds that yield smaller&mdash;but demonstrably positive area&mdash;triangles that you can use the greater than 0 trick on to obtain greater accuracy. Unfortunately I've had no luck in finding such folds. Email me if you think of a way!</p>
+<p>Obviously this isn't the "correct" way to compute <img src="./img/sqrt2.png" class="inline" alt="sqrt(2)" />, for that you'd use newton's method or a faster converging series. What's interesting is the bounds we got are the first two approximations newton's method gives with the initial guess of 1, though this is likely <a href="http://en.wikipedia.org/wiki/Strong_Law_of_Small_Numbers">a coincidence</a>. To me this suggests there are more complicated folds that yield smaller&mdash;but demonstrably positive area&mdash;triangles that you can use the greater than 0 trick on to obtain greater accuracy. Unfortunately I've had no luck in finding such folds. Email me if you think of a way!</p>
 <p>Now you know a really cool party trick to show all your friends, assuming they like math. If they don't like math you can say you're building the worst paper airplane ever.</p>
-
+<p><b>Update:</b> A few hours after positing this I had a eureka moment. You can in fact squeeze a better upper bound for <img src="./img/sqrt2.png" class="inline" alt="sqrt(2)" /> out of a piece of paper, and better yet the approximation is the <i>third</i> one that newton's method gives! I'm pretty confident that the paper trick is just a physical implementation of newton's method for square roots.</p>
+<p>To go further you need to get a pair of scissors and slice off that leftover bit. Once we do that we'll have a section whose edge ratios are <img src="./img/1_by_sqrt2minus1.png" class="inline" alt="1:sqrt(2) - 1" />. </p>
+<img class="figure" src="./img/a4_4.png" alt="Step 3: cutting off the leftover." />
+<p>Next we iteratively cut squares off the section until you can't do it anymore.</p>
+<img class="figure" src="./img/a4_5.png" alt="Step 3: Iteratively removing squares." />
+<p></p>
 <div class="twitter-button"><a href="https://twitter.com/share" class="twitter-share-button" data-via="blacklemon67" data-dnt="true">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 </div>

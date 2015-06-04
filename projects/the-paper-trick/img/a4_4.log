@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Arch Linux) (preloaded format=pdflatex 2014.9.28)  3 JUN 2015 13:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Arch Linux) (preloaded format=pdflatex 2014.9.28)  3 JUN 2015 19:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**a4_1
-(./a4_1.tex
+**a4_4
+(./a4_4.tex
 LaTeX2e <2014/05/01>
 Babel <3.9k> and hyphenation patterns for 79 languages loaded.
 (/usr/share/texmf-dist/tex/latex/base/article.cls
@@ -751,22 +751,22 @@ Package: xparse 2014/11/25 v5471 L3 Experimental document command parser
 \l__xparse_mandatory_args_int=\count136
 \l__xparse_processor_int=\count137
 \l__xparse_v_nesting_int=\count138
-) (./a4_1.aux)
-\openout1 = `a4_1.aux'.
+) (./a4_4.aux)
+\openout1 = `a4_4.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 17.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 18.
 
 (/usr/share/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -835,50 +835,22 @@ e
 ))
 Preview: Fontsize 10pt
 Preview: PDFoutput 1
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 22.
-(/usr/share/texmf-dist/tex/latex/lm/ot1lmr.fd
-File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 22.
-
-(/usr/share/texmf-dist/tex/latex/lm/omllmm.fd
-File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 22.
-
-
-(/usr/share/texmf-dist/tex/latex/lm/omslmsy.fd
-File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 22.
-
-
-(/usr/share/texmf-dist/tex/latex/lm/omxlmex.fd
-File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 22.
-
 Preview: Tightpage -327680 -327680 327680 327680
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./a4_1.aux) ) 
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./a4_4.aux) ) 
 Here is how much of TeX's memory you used:
- 18685 strings out of 493108
- 380715 string characters out of 6140725
- 382466 words of memory out of 5000000
- 21849 multiletter control sequences out of 15000+600000
- 18221 words of font info for 25 fonts, out of 8000000 for 9000
+ 18616 strings out of 493108
+ 378849 string characters out of 6140725
+ 380556 words of memory out of 5000000
+ 21797 multiletter control sequences out of 15000+600000
+ 11435 words of font info for 20 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,7n,65p,10364b,639s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/shar
-e/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf-dist/fonts/enc/dvip
-s/lm/lm-mathsy.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/sh
-are/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf-dist/fonts/typ
-e1/public/lm/lmr5.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmsy5.pfb></
-usr/share/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on a4_1.pdf (1 page, 46079 bytes).
+ 55i,7n,65p,10364b,593s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/shar
+e/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
+Output written on a4_4.pdf (1 page, 3744 bytes).
 PDF statistics:
- 30 PDF objects out of 1000 (max. 8388607)
- 22 compressed objects within 1 object stream
+ 15 PDF objects out of 1000 (max. 8388607)
+ 10 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
