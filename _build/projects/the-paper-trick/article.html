@@ -18,9 +18,15 @@
 <img class="figure" src="./img/bounds.png" alt="Upper and lower bound for sqrt(2)." />
 <p>Obviously this isn't the "correct" way to compute <img src="./img/sqrt2.png" class="inline" alt="sqrt(2)" />, for that you'd use newton's method or a faster converging series. What's interesting is the bounds we got are the first two approximations newton's method gives with the initial guess of 1, though this is likely <a href="http://en.wikipedia.org/wiki/Strong_Law_of_Small_Numbers">a coincidence</a>. To me this suggests there are more complicated folds that yield smaller&mdash;but demonstrably positive area&mdash;triangles that you can use the greater than 0 trick on to obtain greater accuracy. Unfortunately I've had no luck in finding such folds. Email me if you think of a way!</p>
 <p>Now you know a really cool party trick to show all your friends, assuming they like math. If they don't like math you can say you're building the worst paper airplane ever.</p>
-<p><b>Update:</b> A few hours after positing this I had a eureka moment. You can in fact squeeze a better upper bound for <img src="./img/sqrt2.png" class="inline" alt="sqrt(2)" /> out of a piece of paper, and better yet the approximation is the <i>third</i> one that newton's method gives! I'm pretty confident that the paper trick is just a physical implementation of newton's method for square roots.</p>
+<p><b>Update:</b> A few hours after positing this I had a eureka moment. You can in fact create arbitrarily good upper bounds for <img src="./img/sqrt2.png" class="inline" alt="sqrt(2)" /> with an A series sheet of paper.</p>
 <p>To go further you need to get a pair of scissors and slice off that leftover bit. Once we do that we'll have a section whose edge ratios are <img src="./img/1_by_sqrt2minus1.png" class="inline" alt="1:sqrt(2) - 1" />. </p>
 <img class="figure" src="./img/a4_4.png" alt="Step 3: cutting off the leftover." />
 <p>Next we iteratively cut squares off the section until you can't do it anymore.</p>
-<img class="figure" src="./img/a4_5.png" alt="Step 3: Iteratively removing squares." />
+<img class="figure" src="./img/a4_5.png" alt="Step 4: iteratively remove squares." />
 <p>Then we fold back the section's leftover and find our triangle.</p>
+<img class="figure" src="./img/a4_6.png" alt="Step 5: fold the leftovers and flip." />
+<p>The side lengths of this triangle is given by <img src="./img/sm_tri_formula.png" class="inline" style="vertical-align:-4px;" alt="1 - 2(sqrt(2) - 1)" />. Its area can be used to construct another upper bound:</p>
+
+<p>Which is what newtons method will give us after three iterations. Continuing this method is as simple as trimming off the leftover and starting again. I'm pretty confident at this point that the paper trick is just a physical implementation of newton's method for square roots.</p>
+<p>This is bit beyond a party trick now, because once you break out the scissors people are bound to leave. I really wish there was a way to get the <img src="./img/17_over_12.png" class="inline" alt="17/12" /> approximation by folds only. Maybe by unfolding and using creases? At that point you're basically doing <a href="https://en.wikipedia.org/wiki/Compass-and-straightedge_construction">compass and straightedge</a> work.</p>
+<p>If you have any neat ideas pertaining to newton's method and paper folding email me at the reverse of <span class="pre">moc.irom-elkcalb@ellebasi</span>. Bye for now!</p>

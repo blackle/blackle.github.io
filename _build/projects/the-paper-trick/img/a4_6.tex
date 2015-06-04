@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pifont}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing}
+\usepackage[active,tightpage]{preview}
+\usepackage{xparse}
+\ExplSyntaxOn
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{5pt}%
+
+\definecolor{papercolor}{RGB}{248,246,227}
+\definecolor{papercolorbk}{RGB}{242,238,216}
+
+\begin{document}
+\begin{tikzpicture} 
+
+
+    \draw [fill=papercolor] (0.25,1.026650429455) rectangle (1.026650429455,1.348349570545);
+    \draw [fill=papercolorbk] (0.25,0.25) -- (0.25,1.026650429455) -- (1.026650429455,1.026650429455) -- cycle;
+
+    \draw [->] (0.35,1.2) .. controls (0.28,1.0) .. (0.35,0.8);
+
+    \draw [thick,->] (1.1,.799174785272) -- (1.4,.799174785272);
+
+    \begin{scope}[shift={(1.25,0.1)}]
+
+    \draw [fill=papercolorbk] (0.25,0.25) -- (0.25,1.026650429455) -- (1.026650429455,1.026650429455) -- cycle;
+    \draw [fill=papercolorbk] (0.25,1.026650429455) rectangle (1.026650429455,.704951288365);
+
+    \draw [->] (.6383252147275,.6383252147275) .. controls (0.52,-0.1) and (0.50, 1.7) .. (.6383252147275,1.066650429455);
+
+    \draw [thick,->] (1.1,.699174785272) -- (1.4,.699174785272);
+      \begin{scope}[shift={(1.25,1.45)},yscale=-1]
+
+      \draw [fill=papercolor] (0.25,1.026650429455) rectangle (1.026650429455,.704951288365);
+      \draw [fill=papercolorbk] (0.25,0.25) -- (0.25,1.026650429455) -- (1.026650429455,1.026650429455) -- cycle;
+
+      \draw [red] (0.9,0.85) circle (0.26);
+
+      \end{scope}
+    \end{scope}
+
+
+\end{tikzpicture}
+\end{document}
