@@ -1,4 +1,4 @@
-all : a4_1.png a4_2.png a4_3.png a4_4.png a4_5.png a4_6.png a4_calc.png sqrt2.png sqrt2gt1.png sqrt2minus1.png sqrt2lt1pt5.png bounds.png 1_by_sqrt2minus1.png sm_tri_formula.png 17_over_12.png
+all : a4_1.png a4_2.png a4_3.png a4_4.png a4_5.png a4_6.png a4_calc.png sqrt2.png sqrt2gt1.png sqrt2minus1.png sqrt2lt1pt5.png bounds.png bounds2.png 1_by_sqrt2minus1.png sm_tri_formula.png
 
 clean :
 	rm *.pdf *.aux *.log
@@ -14,9 +14,6 @@ sqrt2minus1.png :
 
 sm_tri_formula.png :
 	wget 'http://latex.codecogs.com/png.latex?1-2(\sqrt{2}-1)=3-2\sqrt{2}' -O $@
-
-17_over_12.png :
-	wget 'http://latex.codecogs.com/png.latex?\frac{17}{12}' -O $@
 
 a4_1.png : a4_1.tex
 	pdflatex $(<:.tex=)
@@ -62,7 +59,7 @@ sqrt2lt1pt5.png : sqrt2lt1pt5.tex
 	rm $(<:.tex=.pdf)
 
 
-bounds.png : bounds.tex
+bounds%.png : bounds%.tex
 	pdflatex $(<:.tex=)
 	pdflatex $(<:.tex=)
 	pdftocairo -png -singlefile $(<:.tex=.pdf)

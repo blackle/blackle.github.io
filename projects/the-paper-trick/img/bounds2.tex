@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pifont}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{tikz}
+\usepackage{amsmath}
+
+\usetikzlibrary{decorations.pathreplacing}
+\usepackage[active,tightpage]{preview}
+\usepackage{xparse}
+\ExplSyntaxOn
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{5pt}%
+
+\definecolor{papercolor}{RGB}{248,246,227}
+\definecolor{papercolorbk}{RGB}{242,238,216}
+
+\begin{document}
+\begin{tikzpicture}
+  \node { %
+    $\begin{aligned}
+      0 < \mathrm{Area} &= \frac{1}{2} (3  - 2\sqrt{2})^2  \\
+      &= \frac{17}{2} - 6 \sqrt{2} \implies \\
+      \sqrt{2} & < \frac{17}{12}
+    \end{aligned}$
+  };
+\end{tikzpicture}
+\end{document}
