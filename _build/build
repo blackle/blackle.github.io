@@ -212,8 +212,8 @@ foreach my $file (@files) {
   wrap_static("$file");
 }
 
-`yuicompressor index.css -o $root/index.css`;
-`yuicompressor print.css -o $root/print.css`;
+`cat index.css | cssmin > $root/index.css`;
+`cat print.css | cssmin > $root/print.css`;
 `chmod 755 -R $root`;
 
 chdir($root) or die "$!";

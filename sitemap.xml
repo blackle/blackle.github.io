@@ -1,6 +1,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 	<url>
-		<loc>http://www.blackle-mori.com/</loc>
+		<loc>http://www.blackle-mori.com/projects/nge-parody/</loc>
+	</url>
+	<url>
+		<loc>http://www.blackle-mori.com/projects/the-paper-trick/</loc>
+	</url>
+	<url>
+		<loc>http://www.blackle-mori.com/projects/25-by-25/</loc>
+	</url>
+	<url>
+		<loc>http://www.blackle-mori.com/projects/angora-haiku-generator/</loc>
+	</url>
+	<url>
+		<loc>http://www.blackle-mori.com/projects/webgl-myst/</loc>
+	</url>
+	<url>
+		<loc>http://www.blackle-mori.com/projects/timer/</loc>
+	</url>
+	<url>
+		<loc>http://www.blackle-mori.com/projects/painterly-renderer/</loc>
+	</url>
+	<url>
+		<loc>http://www.blackle-mori.com/projects/audio-dot-pl/</loc>
+	</url>
+	<url>
+		<loc>http://www.blackle-mori.com/projects/blit-ep/</loc>
+	</url>
+	<url>
+		<loc>http://www.blackle-mori.com/projects/</loc>
+	</url>
+	<url>
+		<loc>http://www.blackle-mori.com/projects/sidechannel/</loc>
+	</url>
+	<url>
+		<loc>http://www.blackle-mori.com/projects/page/2/</loc>
+	</url>
+	<url>
+		<loc>http://www.blackle-mori.com/projects/nanowrimo-2013/</loc>
+	</url>
+	<url>
+		<loc>http://www.blackle-mori.com/projects/canda-goes-to-paris/</loc>
+	</url>
+	<url>
+		<loc>http://www.blackle-mori.com/404.html</loc>
 	</url>
 	<url>
 		<loc>http://www.blackle-mori.com/stuff/haiku/</loc>
@@ -15,78 +57,36 @@
 		<loc>http://www.blackle-mori.com/stuff/canadagoestoparis/goty_edition.html</loc>
 	</url>
 	<url>
+		<loc>http://www.blackle-mori.com/stuff/myst/</loc>
+	</url>
+	<url>
 		<loc>http://www.blackle-mori.com/stuff/25x25/</loc>
 	</url>
 	<url>
 		<loc>http://www.blackle-mori.com/stuff/forum_quilt/</loc>
 	</url>
 	<url>
-		<loc>http://www.blackle-mori.com/stuff/myst/</loc>
-	</url>
-	<url>
 		<loc>http://www.blackle-mori.com/stuff/replicate-art-with-js/</loc>
 	</url>
 	<url>
-		<loc>http://www.blackle-mori.com/404.html</loc>
-	</url>
-	<url>
-		<loc>http://www.blackle-mori.com/links/page/2/</loc>
-	</url>
-	<url>
-		<loc>http://www.blackle-mori.com/links/page/3/</loc>
+		<loc>http://www.blackle-mori.com/</loc>
 	</url>
 	<url>
 		<loc>http://www.blackle-mori.com/links/</loc>
 	</url>
 	<url>
-		<loc>http://www.blackle-mori.com/portfolio/slavin-agency/</loc>
+		<loc>http://www.blackle-mori.com/links/page/3/</loc>
 	</url>
 	<url>
-		<loc>http://www.blackle-mori.com/portfolio/blackle-mori/</loc>
+		<loc>http://www.blackle-mori.com/links/page/2/</loc>
 	</url>
 	<url>
 		<loc>http://www.blackle-mori.com/portfolio/</loc>
 	</url>
 	<url>
-		<loc>http://www.blackle-mori.com/projects/25-by-25/</loc>
+		<loc>http://www.blackle-mori.com/portfolio/blackle-mori/</loc>
 	</url>
 	<url>
-		<loc>http://www.blackle-mori.com/projects/canda-goes-to-paris/</loc>
-	</url>
-	<url>
-		<loc>http://www.blackle-mori.com/projects/blit-ep/</loc>
-	</url>
-	<url>
-		<loc>http://www.blackle-mori.com/projects/angora-haiku-generator/</loc>
-	</url>
-	<url>
-		<loc>http://www.blackle-mori.com/projects/webgl-myst/</loc>
-	</url>
-	<url>
-		<loc>http://www.blackle-mori.com/projects/timer/</loc>
-	</url>
-	<url>
-		<loc>http://www.blackle-mori.com/projects/audio-dot-pl/</loc>
-	</url>
-	<url>
-		<loc>http://www.blackle-mori.com/projects/nge-parody/</loc>
-	</url>
-	<url>
-		<loc>http://www.blackle-mori.com/projects/sidechannel/</loc>
-	</url>
-	<url>
-		<loc>http://www.blackle-mori.com/projects/nanowrimo-2013/</loc>
-	</url>
-	<url>
-		<loc>http://www.blackle-mori.com/projects/painterly-renderer/</loc>
-	</url>
-	<url>
-		<loc>http://www.blackle-mori.com/projects/the-paper-trick/</loc>
-	</url>
-	<url>
-		<loc>http://www.blackle-mori.com/projects/page/2/</loc>
-	</url>
-	<url>
-		<loc>http://www.blackle-mori.com/projects/</loc>
+		<loc>http://www.blackle-mori.com/portfolio/slavin-agency/</loc>
 	</url>
 </urlset>
